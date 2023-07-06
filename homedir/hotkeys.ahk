@@ -9,7 +9,7 @@ Run wt.exe -w _quake
 return
 
 #+`:: 
-Run *RunAs wt.exe -w _quake
+Run *RunAs wt.exe
 return
 
 #IfWinActive ahk_exe WindowsTerminal.exe

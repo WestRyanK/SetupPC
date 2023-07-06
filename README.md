@@ -29,7 +29,7 @@ The following changes are made:
 * Create a junction in the user directory pointing to my repos folder.
 * Downloads an AutoHotKey script which does the following:
   * Binds Ctrl+Win+` to open a Terminal in quake mode.
-  * Binds Shift+Win+` to open an elevated Terminal in quake mode.
+  * Binds Shift+Win+` to open an elevated Terminal.
   * Binds Capslock to the right arrow in Powershell to easily autocomplete.
 * Auto run the AutoHotKey script on startup.
 * Set Windows to dark mode.
