@@ -30,31 +30,19 @@ DoIfNew repos -At $westdir {
     New-Item -ItemType junction -Name $Name -Path $At -Target $repodir
 }
 
-#$shell = New-Object -comObject WScript.Shell
-#DoIfNew "Terminal.lnk" -At $westdir {
-#    $shortcut = $shell.CreateShortcut($Path)
-#    $shortcut.TargetPath = "$env:LocalAppData/Microsoft/WindowsApps/wt.exe"
-#    $shortcut.Arguments = "-w _quake"
-#    $shortcut.WorkingDirectory = $westdir
-#    $shortcut.Hotkey = "CTRL+ALT+``"
-#    $shortcut.Save()
-#}
-#
-#DoIfNew "AdminTerminal.lnk" -At $westdir {
-#    $shortcut = $shell.CreateShortcut($Path)
-#    $shortcut.TargetPath = "$env:LocalAppData/Microsoft/WindowsApps/wt.exe"
-#    $shortcut.Arguments = "-w _quake"
-#    $shortcut.WorkingDirectory = $westdir
-#    $shortcut.Hotkey = "CTRL+ALT+1"
-#    $shortcut.Save()
-#
-#    Write-Host "Scripts can't easily set a Shortcut to Run as Administrator. So you'll have to do that yourself"
-#    $selectPath = "$westdir\$Name".Replace('/', '\')
-#    Start explorer.exe -ArgumentList "/select,$selectPath"
-#    Write-Host "Once you've changed the shortcut properties, press 'Enter'"
-#    Read-Host
-#}
+# Download settings files from git repo and copy to home directory
+$setupdir = "$env:HomeDrive/repos/setup"
+$setuphomedir = "$setupdir/homedir"
+git clone --depth 1 https://github.com/WestRyanK/SetupPC $setupdir
+Get-ChildItem $setuphomedir |
+Foreach-Object {
+    $null = DoIfNew -Name $_.Name -At $westdir {
+        mv $_ $westdir
+    }
+}
 
 # Set Windows to Dark Mode
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0 -Type Dword -Force; 
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 0 -Type Dword -Force;
+
+rm -recurse -force $setupdir
