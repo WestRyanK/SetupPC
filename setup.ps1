@@ -31,6 +31,9 @@ choco install microsoft-windows-terminal -y
 choco install autohotkey -y
 choco install powertoys -y
 
+# Reload environment variables so git will work
+refreshenv
+
 $reposdir = DoIfNew -Name repos -At $env:HomeDrive { mkdir $Path }
 $westdir = DoIfNew -Name westryank -At "$env:HomeDrive/Users" { New-Item -ItemType junction -Name $Name -Path $At -Target $env:UserProfile }
 $null = DoIfNew -Name repos -At $westdir { New-Item -ItemType junction -Name $Name -Path $At -Target $reposdir }
@@ -49,5 +52,11 @@ $null = CreateShortcutIfNew -ShortcutName hotkeys.lnk -ShortcutPath "$env:AppDat
 # Set Windows to Dark Mode
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0 -Type Dword -Force; 
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 0 -Type Dword -Force;
+
+# Install PoshGit
+PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force
+Add-PoshGitToProfile -AllUsers -AllHosts 
+start pwsh -ArgumentList "-c PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force; Add-PoshGitToProfile -AllUsers -AllHosts"
+
 
 rm -recurse -force $setupdir
