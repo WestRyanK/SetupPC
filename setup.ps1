@@ -61,3 +61,6 @@ start pwsh -ArgumentList "-c PowerShellGet\Install-Module posh-git -Scope Curren
 
 
 rm -recurse -force $setupdir
+
+Write-Host "Setup complete."
+Write-Host "Please restart your computer."
