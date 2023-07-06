@@ -18,16 +18,16 @@ function DoIfNew { param ( $Name, $At, [scriptblock] $block)
 #choco install microsoft-windows-terminal -y
 choco install autohotkey -y
 
-$repodir = DoIfNew repos -At $env:HomeDrive {
+$reposdir = DoIfNew -Name repos -At $env:HomeDrive {
     mkdir $Path
 }
 
-$westdir = DoIfNew westryank -At "$env:HomeDrive/Users" {
+$westdir = DoIfNew -Name westryank -At "$env:HomeDrive/Users" {
     New-Item -ItemType junction -Name $Name -Path $At -Target $env:UserProfile
 }
 
-DoIfNew repos -At $westdir {
-    New-Item -ItemType junction -Name $Name -Path $At -Target $repodir
+$null = DoIfNew -Name repos -At $westdir {
+    New-Item -ItemType junction -Name $Name -Path $At -Target $reposdir
 }
 
 # Download settings files from git repo and copy to home directory
