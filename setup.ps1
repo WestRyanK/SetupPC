@@ -21,6 +21,11 @@ function CreateShortcutIfNew { param ( $ShortcutName, $ShortcutPath, $TargetPath
     }
 }
 
+function PinToQuickAccess { param($FolderPath)
+    $o = New-Object -com Shell.Application
+    $o.Namespace($FolderPath).Self.InvokeVerb("PinToHome")
+}
+
 
 
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
@@ -59,6 +64,8 @@ PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force
 Add-PoshGitToProfile -AllUsers -AllHosts 
 start pwsh -ArgumentList "-c PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force; Add-PoshGitToProfile -AllUsers -AllHosts"
 
+PinToQuickAccess $westdir.Replace("/","\")
+PinToQuickAccess $reposdir.Replace("/","\")
 
 rm -recurse -force $setupdir
 
