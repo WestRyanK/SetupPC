@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 function DoIfNew { param ( $Name, $At, [scriptblock] $block)
     $Path = "$At/$Name"
     if (!(Test-Path $Path)) {
