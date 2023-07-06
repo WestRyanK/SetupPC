@@ -4,7 +4,8 @@ This project allows me to quickly and easily set up a new computer with all the 
 
 # Instructions
 
-To download and start the setup, run the following line in an elevated Powershell:
+1. Run Powershell as an **Administrator**.
+2. Paste in the following line and run it.
 ```
 Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/WestRyanK/SetupPC/main/setup.ps1 | Invoke-Expression
 ```
