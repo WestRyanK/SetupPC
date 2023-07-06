@@ -14,6 +14,7 @@ Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/WestRyanK/S
 Like always, the following documentation will most likely get out of sync with what the script actually does. But this might still be useful...
 
 The following tools are installed:
+* Chocolatey
 * Git
 * Vim
 * Powershell Core
