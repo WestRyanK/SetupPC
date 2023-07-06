@@ -1,0 +1,84 @@
+set nocompatible 
+
+" Turn on line numbers
+set number
+
+" use tab to switch buffers
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
+
+" Make indent shifts keep selection
+vnoremap < <gv
+vnoremap > >gv
+
+" Enter and Shift enter inserts new lines after and before current line
+" nnoremap <S-Enter> O<Esc> " BROKEN
+nnoremap <CR> o<Esc>
+
+
+" Exit to normal mode with jj or ;;
+inoremap <silent> jj <Esc>
+inoremap <silent> ;; <Esc>A;<Esc>
+
+" In insert mode move to begin and end of line with kk and vv
+inoremap kk <Esc>A
+inoremap vv <Esc>I
+
+" Split line at cursor
+" nnoremap <C-Enter> i<CR><Esc>k$ " BROKEN
+
+" Paste last yank before and after cursor
+nnoremap <C-S-P> "0P
+nnoremap <C-P> "0p
+
+" Capital Y will yank from cursor to end of line, consistent with C and D
+nnoremap Y y$
+
+" Make commands timeout faster
+set timeoutlen=250
+
+" Delete key does not fill register, because how often do you want to cut/copy a single letter?
+nnoremap x "_x
+
+" Make 0 jump to first non-whitespace character on line (like underscore does)
+nnoremap 0 0_
+
+" Space in normal mode highlights the word or WORD
+nnoremap <space> viw
+nnoremap <S-space> viW
+
+" CTRL-A is Select all
+nnoremap <C-a> gg<S-v>G
+" noremap <C-A> gggH<C-O>G
+" cnoremap <C-A> <C-C>gggH<C-O>G
+" onoremap <C-A> <C-C>gggH<C-O>G
+" snoremap <C-A> <C-C>gggH<C-O>G
+" xnoremap <C-A> <C-C>ggVG
+
+
+" Ctrl Z performs undo like you expect
+noremap <C-z> u
+
+" Syntax highlighting
+syntax on
+" Windows split with new one on the bottom
+:set splitbelow
+
+
+" Change cursor on Insert Mode vs Normal Mode
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
+" Optionally reset the cursor on start:
+augroup myCmds
+au!
+autocmd VimEnter * silent !echo -ne "\e[2 q"
+augroup END
+
+
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set noswapfile
+filetype plugin on
+filetype indent on
