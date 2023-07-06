@@ -44,7 +44,7 @@ $setupdir = "$env:HomeDrive/repos/setup"
 $setuphomedir = "$setupdir/homedir"
 git clone --depth 1 https://github.com/WestRyanK/SetupPC $setupdir
 Get-ChildItem $setuphomedir | Foreach-Object {
-    $null = DoIfNew -Name $_.Name -At $westdir { mv $_ $westdir }
+    $null = DoIfNew -Name $_.Name -At $westdir { mv $_.FullName $westdir }
 }
 
 # Shortcut to run AutoHotKey script on Startup
