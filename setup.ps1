@@ -9,6 +9,16 @@ function DoIfNew { param ( $Name, $At, [scriptblock] $block)
     return $Path
 }
 
+function CreateShortcutIfNew { param ( $ShortcutName, $ShortcutPath, $TargetPath, $Arguments)
+    DoIfNew $ShortcutName -At $ShortcutPath {
+        $shell = New-Object -comObject WScript.Shell
+        $shortcut = $shell.CreateShortcut($Path)
+        $shortcut.TargetPath = $TargetPath
+        $shortcut.Arguments = $Arguments
+        $shortcut.Save()
+    }
+}
+
 
 
 #Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
@@ -40,6 +50,9 @@ Foreach-Object {
         mv $_ $westdir
     }
 }
+
+# Shortcut to run AutoHotKey script on Startup
+CreateShortcutIfNew -ShortcutName hotkeys.lnk -ShortcutPath "$env:AppData/Microsoft/Windows/Start Menu/Programs/Startup" -TargetPath "$westdir/hotkeys.ahk"
 
 # Set Windows to Dark Mode
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0 -Type Dword -Force; 
