@@ -23,17 +23,16 @@ function CreateShortcutIfNew { param ( $ShortcutName, $ShortcutPath, $TargetPath
 
 
 
-#Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-#choco install vim -y
-#choco install git -y
-#choco install powershell-core -y
-#choco install microsoft-windows-terminal -y
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+choco install vim -y
+choco install git -y
+choco install powershell-core -y
+choco install microsoft-windows-terminal -y
 choco install autohotkey -y
+choco install powertoys -y
 
 $reposdir = DoIfNew -Name repos -At $env:HomeDrive { mkdir $Path }
-
 $westdir = DoIfNew -Name westryank -At "$env:HomeDrive/Users" { New-Item -ItemType junction -Name $Name -Path $At -Target $env:UserProfile }
-
 $null = DoIfNew -Name repos -At $westdir { New-Item -ItemType junction -Name $Name -Path $At -Target $reposdir }
 
 # Download settings files from git repo and copy to home directory
