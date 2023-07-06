@@ -28,31 +28,22 @@ function CreateShortcutIfNew { param ( $ShortcutName, $ShortcutPath, $TargetPath
 #choco install microsoft-windows-terminal -y
 choco install autohotkey -y
 
-$reposdir = DoIfNew -Name repos -At $env:HomeDrive {
-    mkdir $Path
-}
+$reposdir = DoIfNew -Name repos -At $env:HomeDrive { mkdir $Path }
 
-$westdir = DoIfNew -Name westryank -At "$env:HomeDrive/Users" {
-    New-Item -ItemType junction -Name $Name -Path $At -Target $env:UserProfile
-}
+$westdir = DoIfNew -Name westryank -At "$env:HomeDrive/Users" { New-Item -ItemType junction -Name $Name -Path $At -Target $env:UserProfile }
 
-$null = DoIfNew -Name repos -At $westdir {
-    New-Item -ItemType junction -Name $Name -Path $At -Target $reposdir
-}
+$null = DoIfNew -Name repos -At $westdir { New-Item -ItemType junction -Name $Name -Path $At -Target $reposdir }
 
 # Download settings files from git repo and copy to home directory
 $setupdir = "$env:HomeDrive/repos/setup"
 $setuphomedir = "$setupdir/homedir"
 git clone --depth 1 https://github.com/WestRyanK/SetupPC $setupdir
-Get-ChildItem $setuphomedir |
-Foreach-Object {
-    $null = DoIfNew -Name $_.Name -At $westdir {
-        mv $_ $westdir
-    }
+Get-ChildItem $setuphomedir | Foreach-Object {
+    $null = DoIfNew -Name $_.Name -At $westdir { mv $_ $westdir }
 }
 
 # Shortcut to run AutoHotKey script on Startup
-CreateShortcutIfNew -ShortcutName hotkeys.lnk -ShortcutPath "$env:AppData/Microsoft/Windows/Start Menu/Programs/Startup" -TargetPath "$westdir/hotkeys.ahk"
+$null = CreateShortcutIfNew -ShortcutName hotkeys.lnk -ShortcutPath "$env:AppData/Microsoft/Windows/Start Menu/Programs/Startup" -TargetPath "$westdir/hotkeys.ahk"
 
 # Set Windows to Dark Mode
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0 -Type Dword -Force; 
