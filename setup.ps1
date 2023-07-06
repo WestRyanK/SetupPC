@@ -32,6 +32,7 @@ choco install autohotkey -y
 choco install powertoys -y
 
 # Reload environment variables so git will work
+Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
 refreshenv
 
 $reposdir = DoIfNew -Name repos -At $env:HomeDrive { mkdir $Path }
