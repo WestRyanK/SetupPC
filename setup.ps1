@@ -68,6 +68,13 @@ start pwsh -ArgumentList "-c PowerShellGet\Install-Module posh-git -Scope Curren
 PinToQuickAccess $westdir.Replace("/","\")
 PinToQuickAccess $reposdir.Replace("/","\")
 
+Write-Host "Installing 1Password"
+$DownloadUrl = "https://downloads.1password.com/win/1PasswordSetup-latest.exe"
+$DownloadPath = "$westdir/Downloads/install.exe"
+Invoke-WebRequest -Uri $DownloadUrl -OutFile $DownloadPath
+start $DownloadPath -wait
+
+
 rm -recurse -force $setupdir
 
 Write-Host "Setup complete."
