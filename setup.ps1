@@ -37,6 +37,7 @@ choco install microsoft-windows-terminal -y
 choco install autohotkey -y
 choco install powertoys -y
 choco install googlechrome -y
+choco install spotify -y
 
 Write-Host "Reloading environment variables so git will work"
 Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
