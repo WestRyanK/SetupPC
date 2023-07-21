@@ -63,9 +63,9 @@ Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Pe
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 0 -Type Dword -Force;
 
 Write-Host "Install PoshGit"
-PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force
-Add-PoshGitToProfile -AllUsers -AllHosts 
-start pwsh -ArgumentList "-c PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force; Add-PoshGitToProfile -AllUsers -AllHosts"
+# This script was most likely run from PowershellV1. To install Posh-Git for PowershellV7, it must be run from V7. So we run it for each version of powershell.
+. $setupdir/setup_poshgit.ps1
+start pwsh -ArgumentList "-c $setupdir/setup_poshgit.ps1"
 
 PinToQuickAccess $westdir.Replace("/","\")
 PinToQuickAccess $reposdir.Replace("/","\")
@@ -81,3 +81,4 @@ rm -recurse -force $setupdir
 
 Write-Host "Setup complete."
 Write-Host "Please restart your computer."
+
