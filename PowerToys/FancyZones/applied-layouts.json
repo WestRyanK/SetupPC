@@ -1,0 +1,21 @@
+{
+  "applied-layouts": [
+    {
+      "device": {
+        "monitor": "DEL4065",
+        "monitor-instance": "4\u002615f5ab1f\u00260\u0026UID24645",
+        "monitor-number": 2,
+        "serial-number": "PH5NY0BA225L",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
+      },
+      "applied-layout": {
+        "uuid": "{917CA689-1A6C-4404-8D3D-DC4839A098E3}",
+        "type": "blank",
+        "show-spacing": false,
+        "spacing": 0,
+        "zone-count": 0,
+        "sensitivity-radius": 0
+      }
+    }
+  ]
+}
