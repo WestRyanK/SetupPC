@@ -75,6 +75,9 @@ $DownloadUrl = "https://downloads.1password.com/win/1PasswordSetup-latest.exe"
 $DownloadPath = "$westdir/Downloads/install.exe"
 Invoke-WebRequest -Uri $DownloadUrl -OutFile $DownloadPath
 start $DownloadPath -wait
+if (Test-Path $DownloadPath) {
+    rm $DownloadPath
+}
 
 
 rm -recurse -force $setupdir
