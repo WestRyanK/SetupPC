@@ -55,6 +55,15 @@ Get-ChildItem $setuphomedir | Foreach-Object {
     $null = DoIfNew -Name $_.Name -At $westdir { mv $_.FullName $westdir }
 }
 
+Write-Host "Updating PowerToy Settings"
+$PowerToysSettingsParent = "$env:LocalAppData/Microsoft"
+$PowerToysSettings = "$PowerToysSettingsParent/PowerToys"
+$setupPowerToysDir = "$setupdir/PowerToys"
+if (Test-Path $PowerToysSettings) {
+    Get-ChildItem -Path $PowerToysSettings -Filter "*.json" -Recurse | Remove-Item
+}
+Copy-Item -Recurse -Path $setupPowerToysDir -Destination $PowerToysSettingsParent -Force
+
 Write-Host "Adding shortcut to run AutoHotKey script on Startup"
 $null = CreateShortcutIfNew -ShortcutName hotkeys.lnk -ShortcutPath "$env:AppData/Microsoft/Windows/Start Menu/Programs/Startup" -TargetPath "$westdir/hotkeys.ahk"
 
@@ -78,7 +87,6 @@ start $DownloadPath -wait
 if (Test-Path $DownloadPath) {
     rm $DownloadPath
 }
-
 
 rm -recurse -force $setupdir
 
