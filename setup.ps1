@@ -55,14 +55,11 @@ Get-ChildItem $setuphomedir | Foreach-Object {
     $null = DoIfNew -Name $_.Name -At $westdir { mv $_.FullName $westdir }
 }
 
-Write-Host "Updating PowerToy Settings"
-$PowerToysSettingsParent = "$env:LocalAppData/Microsoft"
-$PowerToysSettings = "$PowerToysSettingsParent/PowerToys"
-$setupPowerToysDir = "$setupdir/PowerToys"
-if (Test-Path $PowerToysSettings) {
-    Get-ChildItem -Path $PowerToysSettings -Filter "*.json" -Recurse | Remove-Item
-}
-Copy-Item -Recurse -Path $setupPowerToysDir -Destination $PowerToysSettingsParent -Force
+. "$PSScriptRoot/commit_settings.ps1"
+Write-Host "Restoring Terminal Settings"
+Restore-Settings Terminal
+Write-Host "Restoring PowerToys Settings"
+Restore-Settings PowerToys
 
 Write-Host "Adding shortcut to run AutoHotKey script on Startup"
 $null = CreateShortcutIfNew -ShortcutName hotkeys.lnk -ShortcutPath "$env:AppData/Microsoft/Windows/Start Menu/Programs/Startup" -TargetPath "$westdir/hotkeys.ahk"
