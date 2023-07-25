@@ -2,7 +2,6 @@ $TerminalSettingsPath = "$env:LocalAppData/Packages/Microsoft.WindowsTerminal_8w
 $BackupPath = "$PSScriptRoot/Terminal"
 
 Function Backup {
-    $null = New-Item -ItemType Directory -Path $BackupPath -Force
     Copy-Item -Path "$TerminalSettingsPath/settings.json" -Destination $BackupPath
 }
 

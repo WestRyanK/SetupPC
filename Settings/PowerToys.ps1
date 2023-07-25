@@ -2,7 +2,7 @@ $PowerToysSettingsPath = "$env:localAppData/Microsoft/PowerToys"
 $BackupPath = "$PSScriptRoot/PowerToys"
 
 Function Backup {
-    Copy-Item -Path $PowerToysSettingsPath -Destination $BackupPath -Recurse -Filter "*.json"
+    Copy-Item -Path $PowerToysSettingsPath -Destination ([System.IO.DirectoryInfo]$BackupPath).Parent -Recurse -Filter "*.json" -Force
     Get-ChildItem $BackupPath -Directory -Recurse | Where-Object { (Get-ChildItem $_ -File -Recurse) -eq $null } | Remove-Item -Recurse
 }
 

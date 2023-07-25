@@ -30,6 +30,7 @@ Function Backup-Settings { param(
 
     . "$PSScriptRoot/Settings/$Name.ps1"
     Remove-Settings $Name
+    $null = New-Item -ItemType Directory -Path (Get-SettingsFolder $Name) -Force
     Backup 
     Commit-Settings $Name
 }
