@@ -85,8 +85,6 @@ if (Test-Path $DownloadPath) {
     rm $DownloadPath
 }
 
-rm -recurse -force $setupdir
-
 Write-Host "Setup complete."
 Write-Host "Please restart your computer."
 
