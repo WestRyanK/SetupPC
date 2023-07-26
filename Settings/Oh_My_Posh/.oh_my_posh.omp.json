@@ -37,8 +37,8 @@
         {
           "type": "git",
           "style": "diamond",
-          "leading_diamond": " \ue0b6",
-          "trailing_diamond": "\ue0b4 ",
+          "leading_diamond": "\ue0b6",
+          "trailing_diamond": "\ue0b4",
           "foreground": "p:white",
           "background": "p:chip_background",
           "template": "<b>{{ if .UpstreamURL }}{{ url .UpstreamIcon .UpstreamURL }} {{ end }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}<#E84855> \uf044 {{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }}<#2FDA4E> \uf046 {{ .Staging.String }}</>{{ end }}</b>",
@@ -47,7 +47,8 @@
             "fetch_status": true,
             "fetch_upstream_icon": true
           }
-        },
+        }
+/*
         {
           "type": "python",
           "style": "plain",
@@ -69,6 +70,7 @@
           "background": "p:chip_background",
           "template": "\ue641 <b>{{ .CurrentDate | date \"15:04:05\" }}</b>"
         }
+*/
       ]
     }
   ],
