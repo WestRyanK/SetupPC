@@ -147,11 +147,15 @@
     {
         "defaults": 
         {
+            "colorScheme": 
+            {
+                "light": "Campbell"
+            },
             "font": 
             {
-                "face": "CaskaydiaCove Nerd Font"
+                "face": "MesloLGL Nerd Font"
             },
-            "useAtlasEngine": true
+            "useAtlasEngine": false
         },
         "list": 
         [
