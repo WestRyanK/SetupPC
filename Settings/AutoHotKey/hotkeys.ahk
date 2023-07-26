@@ -12,7 +12,7 @@ return
 Run *RunAs wt.exe
 return
 
-;#IfWinActive ahk_exe WindowsTerminal.exe
+#IfWinActive ahk_exe WindowsTerminal.exe
 CapsLock::
 Send, {Right}
 return
