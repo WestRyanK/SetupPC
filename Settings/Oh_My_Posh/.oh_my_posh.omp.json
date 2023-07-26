@@ -15,7 +15,7 @@
           "trailing_diamond": "\ue0b4",
           "foreground": "p:white",
           "background": "p:chip_background",
-          "template": "<b>{{ if .UpstreamURL }}{{ url .UpstreamIcon .UpstreamURL }} {{ end }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}<#E84855> \uf044 {{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }}<#2FDA4E> \uf046 {{ .Staging.String }}</>{{ end }}</b>",
+          "template": "<b>{{ if .UpstreamURL }}{{ url .UpstreamIcon .UpstreamURL }} {{ end }}{{ .HEAD }}{{if .BranchStatus }} <p:yellow>{{ .BranchStatus }}</p:yellow>{{ end }}{{ if .Working.Changed }}<#E84855> \uf044 {{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }}<#2FDA4E> \uf046 {{ .Staging.String }}</>{{ end }}</b>",
           "properties": {
             "branch_max_length": 25,
             "fetch_status": true,
