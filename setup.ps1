@@ -11,16 +11,6 @@ function DoIfNew { param ( $Name, $At, [scriptblock] $block)
     return $Path
 }
 
-function CreateShortcutIfNew { param ( $ShortcutName, $ShortcutPath, $TargetPath, $Arguments)
-    DoIfNew $ShortcutName -At $ShortcutPath {
-        $shell = New-Object -comObject WScript.Shell
-        $shortcut = $shell.CreateShortcut($Path)
-        $shortcut.TargetPath = $TargetPath
-        $shortcut.Arguments = $Arguments
-        $shortcut.Save()
-    }
-}
-
 function PinToQuickAccess { param($FolderPath)
     $o = New-Object -com Shell.Application
     $o.Namespace($FolderPath).Self.InvokeVerb("PinToHome")
@@ -47,22 +37,20 @@ $reposdir = DoIfNew -Name repos -At $env:HomeDrive { mkdir $Path }
 $westdir = DoIfNew -Name westryank -At "$env:HomeDrive/Users" { New-Item -ItemType junction -Name $Name -Path $At -Target $env:UserProfile }
 $null = DoIfNew -Name repos -At $westdir { New-Item -ItemType junction -Name $Name -Path $At -Target $reposdir }
 
-Write-Host "Downloading settings files from git repo and copying them to the home directory"
+Write-Host "Downloading settings files from git repo"
 $setupdir = "$env:HomeDrive/repos/setup"
-$setuphomedir = "$setupdir/homedir"
 git clone --depth 1 https://github.com/WestRyanK/SetupPC $setupdir
-Get-ChildItem $setuphomedir | Foreach-Object {
-    $null = DoIfNew -Name $_.Name -At $westdir { mv $_.FullName $westdir }
-}
 
 . "$PSScriptRoot/commit_settings.ps1"
 Write-Host "Restoring Terminal Settings"
 Restore-Settings Terminal
 Write-Host "Restoring PowerToys Settings"
 Restore-Settings PowerToys
+Write-Host "Restoring Vim Settings"
+Restore-Settings Vim
+Write-Host "Restoring AutoHotkey Settings"
+Restore-Settings AutoHotKey
 
-Write-Host "Adding shortcut to run AutoHotKey script on Startup"
-$null = CreateShortcutIfNew -ShortcutName hotkeys.lnk -ShortcutPath "$env:AppData/Microsoft/Windows/Start Menu/Programs/Startup" -TargetPath "$westdir/hotkeys.ahk"
 
 Write-Host "Setting Windows to Dark Mode"
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0 -Type Dword -Force
