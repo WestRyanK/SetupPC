@@ -6,33 +6,7 @@
   "blocks": [
     {
       "type": "prompt",
-      "alignment": "left",
-      "segments": [
-        {
-          "type": "path",
-          "style": "diamond",
-          "leading_diamond": "\ue0b6",
-          "trailing_diamond": "\ue0b4",
-          "foreground": "p:white",
-          "background": "p:chip_background",
-          "template": "<b>{{ path .Var.FolderIcon .Location }} {{ .Location }}</>",
-          "properties": {
-            "style": "full"
-          }
-        },
-        {
-          "type": "root",
-          "style": "diamond",
-          "leading_diamond": " \ue0b6",
-          "trailing_diamond": "\ue0b4",
-          "foreground": "p:white",
-          "background": "p:yellow",
-          "template": " \uf0e7 "
-        }
-      ]
-    },
-    {
-      "type": "rprompt",
+      "alignment": "right",
       "segments": [
         {
           "type": "git",
@@ -71,6 +45,34 @@
           "template": "\ue641 <b>{{ .CurrentDate | date \"15:04:05\" }}</b>"
         }
 */
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "path",
+          "style": "diamond",
+          "leading_diamond": "\ue0b6",
+          "trailing_diamond": "\ue0b4",
+          "foreground": "p:white",
+          "background": "p:chip_background",
+          "template": "<b>{{ path .Var.FolderIcon .Location }} {{ .Location }}</>",
+          "properties": {
+            "style": "full"
+          }
+        },
+        {
+          "type": "root",
+          "style": "diamond",
+          "leading_diamond": " \ue0b6",
+          "trailing_diamond": "\ue0b4",
+          "foreground": "p:white",
+          "background": "p:yellow",
+          "template": " \uf0e7 "
+        }
       ]
     }
   ],
