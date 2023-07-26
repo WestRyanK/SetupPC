@@ -13,7 +13,7 @@ Function Commit-Settings { param([String] $Name)
     $ChangeCount = (git status --porcelain | Where-Object { $_ -Like "* $FolderToCommit/*" }).Count
     if ($ChangeCount -gt 0) {
         git add $FolderToCommit
-        git commit -m "** Commit $Name Settings**"
+        git commit -m "**Commit $Name Settings**"
         git push
     }
 }
