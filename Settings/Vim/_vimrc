@@ -1,5 +1,8 @@
 set nocompatible 
 
+" Default to system clipboard
+set clipboard=unnamed
+
 " Turn on line numbers
 set number
 
