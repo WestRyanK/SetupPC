@@ -25,7 +25,7 @@ Function Get-SettingsFolder { param([String] $Name)
 
 Function Backup-Settings { param(
                                 [Parameter(Mandatory)]
-                                [ValidateSet("AutoHotKey", "Oh_My_Posh", "PowerToys", "Powershell", "Terminal", "Vim")]
+                                [ValidateSet("AutoHotKey", "OhMyPosh", "PowerToys", "Powershell", "Terminal", "Vim")]
                                 [String] $Name)
 
     . "$PSScriptRoot/Settings/$Name.ps1"
@@ -37,7 +37,7 @@ Function Backup-Settings { param(
 
 Function Diff-Settings { param(
                                 [Parameter(Mandatory)]
-                                [ValidateSet("AutoHotKey", "Oh_My_Posh", "PowerToys", "Powershell", "Terminal", "Vim")]
+                                [ValidateSet("AutoHotKey", "OhMyPosh", "PowerToys", "Powershell", "Terminal", "Vim")]
                                 [String] $Name)
 
     . "$PSScriptRoot/Settings/$Name.ps1"
@@ -49,7 +49,7 @@ Function Diff-Settings { param(
 
 Function Restore-Settings { param(
                                 [Parameter(Mandatory)]
-                                [ValidateSet("AutoHotKey", "Oh_My_Posh", "PowerToys", "Powershell", "Terminal", "Vim")]
+                                [ValidateSet("AutoHotKey", "OhMyPosh", "PowerToys", "Powershell", "Terminal", "Vim")]
                                 [String] $Name)
 
     . "$PSScriptRoot/Settings/$Name.ps1"
