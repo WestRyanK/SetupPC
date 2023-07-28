@@ -3,6 +3,9 @@ set nocompatible
 " Default to system clipboard
 set clipboard=unnamed
 
+" Allow backspacing
+set backspace=indent,eol,start
+
 " Turn on line numbers
 set number
 
