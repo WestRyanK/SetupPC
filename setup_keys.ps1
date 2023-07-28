@@ -23,4 +23,4 @@ $RemapString = $RemapHeaderString + $RemapCountString + $RemapEmptySpotString + 
 $RemapBytes = $RemapString.Split(",") | % { "0x$_" }
 
 $RegistryPath = "HKLM:/System/CurrentControlSet/Control/Keyboard Layout"
-New-ItemProperty -Path $RegistryPath -Name "Scancode Map" -PropertyType Binary -Value ([byte[]]$RemapBytes) -Force
+$null = New-ItemProperty -Path $RegistryPath -Name "Scancode Map" -PropertyType Binary -Value ([byte[]]$RemapBytes) -Force
