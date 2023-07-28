@@ -41,17 +41,6 @@ Write-Host "Downloading settings files from git repo"
 $setupdir = "$env:HomeDrive/repos/setup"
 git clone --depth 1 https://github.com/WestRyanK/SetupPC $setupdir
 
-. "$PSScriptRoot/commit_settings.ps1"
-Write-Host "Restoring Terminal Settings"
-Restore-Settings Terminal
-Write-Host "Restoring PowerToys Settings"
-Restore-Settings PowerToys
-Write-Host "Restoring Vim Settings"
-Restore-Settings Vim
-Write-Host "Restoring AutoHotkey Settings"
-Restore-Settings AutoHotKey
-
-
 Write-Host "Setting Windows to Dark Mode"
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0 -Type Dword -Force
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 0 -Type Dword -Force
@@ -63,10 +52,9 @@ Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer 
 Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name HideFileExt -Value 0 -Type Dword -Force # Show Extensions for Known File Types
 Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name Hidden -Value 1 -Type Dword -Force # Show Hidden Files and Folders
 
-Write-Host "Install PoshGit"
+Write-Host "Running PowershellV7-Specific Setup"
 # This script was most likely run from PowershellV1. To install Posh-Git for PowershellV7, it must be run from V7. So we run it for each version of powershell.
-. $setupdir/setup_poshgit.ps1
-start pwsh -ArgumentList "-c $setupdir/setup_poshgit.ps1"
+start pwsh -ArgumentList "-c $setupdir/setup_powershellv7.ps1"
 
 PinToQuickAccess $westdir.Replace("/","\")
 PinToQuickAccess $reposdir.Replace("/","\")
