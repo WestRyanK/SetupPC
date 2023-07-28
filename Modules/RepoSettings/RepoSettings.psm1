@@ -10,6 +10,7 @@ Function RepoSettings-Restore {
     $Names = $Name
     if ($Name -eq "All" -or $Name -eq '') {
         $Names = $AllRepoSettings
+        $Name = "All"
     }
     $Names | Foreach-Object {
         Write-Host "Restoring $_..."
@@ -27,6 +28,7 @@ Function RepoSettings-Add {
     $Names = $Name
     if ($Name -eq "All" -or $Name -eq '') {
         $Names = $AllRepoSettings
+        $Name = "All"
     }
     $Names | Foreach-Object {
         Write-Host "Adding $_ to repo..."
@@ -68,15 +70,17 @@ Function RepoSettings-Commit {
             [String] $Message
     )
 
-    git -C "$RepoSettingsRoot" reset
+    $null = git -C "$RepoSettingsRoot" reset
     $Names = $Name
     if ($Name -eq "All" -or $Name -eq '') {
         $Names = $AllRepoSettings
+        $Name = "All"
     }
     $ChangeCount = 0
     $Names | Foreach-Object {
-        $RepoSettingsPath = "$RepoSettingsRoot/$_"
-        $ChangeCount += (git -C "$RepoSettingsRoot" status --porcelain | Where-Object { $_ -Like "* $RepoSettingsPath/*" }).Count
+        $IndividualName = $_
+        $RepoSettingsPath = "$RepoSettingsRoot/$IndividualName"
+        $ChangeCount += (git -C "$RepoSettingsRoot" status --porcelain | Where-Object { $_ -Like "* Settings/$IndividualName/*" }).Count
         git -C "$RepoSettingsRoot" add $RepoSettingsPath
     }
     if ($ChangeCount -gt 0) {
