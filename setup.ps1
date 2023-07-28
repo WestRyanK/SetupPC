@@ -47,6 +47,7 @@ if (Test-Path $setupdir) {
     rm $setupdir -recurse -force
 }
 git clone --depth 1 https://github.com/WestRyanK/SetupPC $setupdir
+Get-ChildItem -Recurse -Path "$setupdir" -Force | Set-Acl -AclObject (Get-Acl "$Home/Documents")
 
 Write-Host "Setting Windows to Dark Mode"
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0 -Type Dword -Force
