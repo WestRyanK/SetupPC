@@ -1,7 +1,7 @@
-$AllRepoSettings = ("AutoHotKey", "OhMyPosh", "PowerToys", "Powershell", "Terminal", "Vim")
-$RepoSettingsRoot = "C:/repos/setup/Settings"
+$AllSettings = ("AutoHotKey", "OhMyPosh", "PowerToys", "Powershell", "Terminal", "Vim")
+$SettingsRepoRoot = "C:/repos/setup/Settings"
 
-Function RepoSettings-Restore {
+Function SettingsRepo-Restore {
     param(
         [ValidateSet("All", "AutoHotKey", "OhMyPosh", "PowerToys", "Powershell", "Terminal", "Vim")] 
             [String] $Name
@@ -9,17 +9,17 @@ Function RepoSettings-Restore {
 
     $Names = $Name
     if ($Name -eq "All" -or $Name -eq '') {
-        $Names = $AllRepoSettings
+        $Names = $AllSettings
         $Name = "All"
     }
     $Names | Foreach-Object {
         Write-Host "Restoring $_..."
-        . "$RepoSettingsRoot/$_.ps1"
+        . "$SettingsRepoRoot/$_.ps1"
         Restore
     }
 }
 
-Function RepoSettings-Add {
+Function SettingsRepo-Add {
     param(
         [ValidateSet("All", "AutoHotKey", "OhMyPosh", "PowerToys", "Powershell", "Terminal", "Vim")]
             [String] $Name
@@ -27,25 +27,25 @@ Function RepoSettings-Add {
 
     $Names = $Name
     if ($Name -eq "All" -or $Name -eq '') {
-        $Names = $AllRepoSettings
+        $Names = $AllSettings
         $Name = "All"
     }
     $Names | Foreach-Object {
         Write-Host "Adding $_ to repo..."
         
-        $RepoSettingsPath = "$RepoSettingsRoot/$_"
-        if (Test-Path $RepoSettingsPath) {
-            Remove-Item "$RepoSettingsPath" -Recurse
+        $SettingsRepoPath = "$SettingsRepoRoot/$_"
+        if (Test-Path $SettingsRepoPath) {
+            Remove-Item "$SettingsRepoPath" -Recurse
         }
-        $null = New-Item -ItemType Directory -Path "$RepoSettingsPath" -Force
-        . "$RepoSettingsRoot/$_.ps1"
+        $null = New-Item -ItemType Directory -Path "$SettingsRepoPath" -Force
+        . "$SettingsRepoRoot/$_.ps1"
         Backup
     }
-    RepoSettings-Status
+    SettingsRepo-Status
 }
 
-Function RepoSettings-Status {
-    $ChangedFiles = (git -C "$RepoSettingsRoot" status --short)
+Function SettingsRepo-Status {
+    $ChangedFiles = (git -C "$SettingsRepoRoot" status --short)
     if ($ChangedFiles) {
         Write-Host "The following settings have changed:"
         Write-Host $ChangedFiles
@@ -55,33 +55,33 @@ Function RepoSettings-Status {
     }
 }
 
-Function RepoSettings-Diff {
-    git -C "$RepoSettingsRoot" diff
+Function SettingsRepo-Diff {
+    git -C "$SettingsRepoRoot" diff
 }
 
-Function RepoSettings-Reset {
-    git -C "$RepoSettingsRoot" reset head --hard
+Function SettingsRepo-Reset {
+    git -C "$SettingsRepoRoot" reset head --hard
 }
 
-Function RepoSettings-Commit {
+Function SettingsRepo-Commit {
     param(
         [ValidateSet("All", "AutoHotKey", "OhMyPosh", "PowerToys", "Powershell", "Terminal", "Vim")]
             [String] $Name,
             [String] $Message
     )
 
-    $null = git -C "$RepoSettingsRoot" reset
+    $null = git -C "$SettingsRepoRoot" reset
     $Names = $Name
     if ($Name -eq "All" -or $Name -eq '') {
-        $Names = $AllRepoSettings
+        $Names = $AllSettings
         $Name = "All"
     }
     $ChangeCount = 0
     $Names | Foreach-Object {
         $IndividualName = $_
-        $RepoSettingsPath = "$RepoSettingsRoot/$IndividualName"
-        $ChangeCount += (git -C "$RepoSettingsRoot" status --porcelain | Where-Object { $_ -Like "* Settings/$IndividualName/*" }).Count
-        git -C "$RepoSettingsRoot" add $RepoSettingsPath
+        $SettingsRepoPath = "$SettingsRepoRoot/$IndividualName"
+        $ChangeCount += (git -C "$SettingsRepoRoot" status --porcelain | Where-Object { $_ -Like "* Settings/$IndividualName/*" }).Count
+        git -C "$SettingsRepoRoot" add $SettingsRepoPath
     }
     if ($ChangeCount -gt 0) {
         if (-not $Message) {
@@ -90,7 +90,7 @@ Function RepoSettings-Commit {
         else {
             $CommitMessage = "**Backup ${Name}: $Message**"
         }
-        git -C "$RepoSettingsRoot" commit -m "$CommitMessage"
-        git -C "$RepoSettingsRoot" push
+        git -C "$SettingsRepoRoot" commit -m "$CommitMessage"
+        git -C "$SettingsRepoRoot" push
     }
 }
