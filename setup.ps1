@@ -68,6 +68,7 @@ start pwsh -ArgumentList "-c $setupdir/setup_powershellv7.ps1"
 PinToQuickAccess $westdir.Replace("/","\")
 PinToQuickAccess $reposdir.Replace("/","\")
 
+Write-Host "Rebinding some keyboard keys"
 . "$setupdir/setup_keys.ps1"
 
 Write-Host "Setup complete."

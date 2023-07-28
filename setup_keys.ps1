@@ -4,10 +4,10 @@
 # Remaps from one key to another at the system level
 
 $CapsLock = "3A,00"
-$NumpadAdd = "4E,00"
+$PageDown = "51,00"
 
 $Remappings = @{
-    $CapsLock = $NumpadAdd;
+    $CapsLock = $PageDown;
 }
 
 $RemapRemappingsString = ""
@@ -23,4 +23,4 @@ $RemapString = $RemapHeaderString + $RemapCountString + $RemapEmptySpotString + 
 $RemapBytes = $RemapString.Split(",") | % { "0x$_" }
 
 $RegistryPath = "HKLM:/System/CurrentControlSet/Control/Keyboard Layout"
-New-ItemProperty -Path $RegistryPath -Name "Scancode Map" -PropertyType Binary -Value ([byte[]]$RemapBytes)
+New-ItemProperty -Path $RegistryPath -Name "Scancode Map" -PropertyType Binary -Value ([byte[]]$RemapBytes) -Force
