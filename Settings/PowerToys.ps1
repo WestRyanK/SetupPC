@@ -10,6 +10,6 @@ Function Restore {
     if (Test-Path $PowerToysSettingsPath) {
         Get-ChildItem -Path $PowerToysSettingsPath -Filter "*.json" -Recurse | Remove-Item
     }
-    New-Item -ItemType Directory -Path $PowerToysSettingsPath -Force
+    $null = New-Item -ItemType Directory -Path $PowerToysSettingsPath -Force
     Copy-Item -Recurse -Path "$BackupPath/*" -Destination $PowerToysSettingsPath -Force
 }
