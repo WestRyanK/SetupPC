@@ -28,6 +28,7 @@ choco install autohotkey -y
 choco install powertoys -y
 choco install googlechrome -y
 choco install spotify -y
+winget install -e --id AgileBits.1Password
 
 Write-Host "Reloading environment variables so git will work"
 Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
@@ -58,15 +59,6 @@ start pwsh -ArgumentList "-c $setupdir/setup_powershellv7.ps1"
 
 PinToQuickAccess $westdir.Replace("/","\")
 PinToQuickAccess $reposdir.Replace("/","\")
-
-Write-Host "Installing 1Password"
-$DownloadUrl = "https://downloads.1password.com/win/1PasswordSetup-latest.exe"
-$DownloadPath = "$westdir/Downloads/install.exe"
-Invoke-WebRequest -Uri $DownloadUrl -OutFile $DownloadPath
-start $DownloadPath -wait
-if (Test-Path $DownloadPath) {
-    rm $DownloadPath
-}
 
 Write-Host "Setup complete."
 Write-Host "Please restart your computer."
