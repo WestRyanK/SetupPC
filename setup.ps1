@@ -23,13 +23,13 @@ winget install -e --id vim.vim
 Write-Host "Installing Git"
 winget install -e --id Git.Git
 Write-Host "Installing Powershell"
-winget install -e --id Microsoft.Powershell
+winget install -e --id Microsoft.PowerShell
 Write-Host "Installing Windows Terminal"
 winget install -e --id Microsoft.WindowsTerminal
 Write-Host "Installing Windows PowerToys"
 winget install -e --id Microsoft.PowerToys
 Write-Host "Installing Windows AutoHotKey"
-winget install -e --id AutoHotKey.AutoHotKey
+winget install -e --id AutoHotkey.AutoHotkey
 Write-Host "Installing Windows Chrome"
 winget install -e --id Google.Chrome
 Write-Host "Installing Windows Spotify"
