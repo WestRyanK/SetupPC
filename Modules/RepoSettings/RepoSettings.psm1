@@ -43,8 +43,14 @@ Function RepoSettings-Add {
 }
 
 Function RepoSettings-Status {
-    Write-Host "The following settings have changed:"
-    git -C "$RepoSettingsRoot" status --short
+    $ChangedFiles = (git -C "$RepoSettingsRoot" status --short)
+    if ($ChangedFiles) {
+        Write-Host "The following settings have changed:"
+        Write-Host $ChangedFiles
+    }
+    else {
+        Write-Host "No settings have changed"
+    }
 }
 
 Function RepoSettings-Diff {
