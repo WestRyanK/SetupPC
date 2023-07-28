@@ -3,5 +3,5 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 oh-my-posh font install Meslo
 
 Copy-Item -Path "$PSScriptRoot/Modules/*" -Destination "$Home/Documents/PowerShell/Modules" -Recurse -Force
-Import-Module RepoSettings
+Import-Module RepoSettings -DisableNameChecking
 RepoSettings-Restore All
