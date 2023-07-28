@@ -39,7 +39,7 @@ Function RepoSettings-Add {
         . "$RepoSettingsRoot/$_.ps1"
         Backup
     }
-    Status-RepoSettings
+    RepoSettings-Status
 }
 
 Function RepoSettings-Status {
