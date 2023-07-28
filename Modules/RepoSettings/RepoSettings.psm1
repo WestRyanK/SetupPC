@@ -65,7 +65,6 @@ Function RepoSettings-Commit {
     param(
         [ValidateSet("All", "AutoHotKey", "OhMyPosh", "PowerToys", "Powershell", "Terminal", "Vim")]
             [String] $Name,
-        [Parameter(Optional)]
             [String] $Message
     )
 
