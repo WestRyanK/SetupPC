@@ -17,22 +17,25 @@ function PinToQuickAccess { param($FolderPath)
 }
 
 
-
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 Write-Host "Installing Applications"
-choco install vim -y
-choco install git -y
-choco install powershell-core -y
-choco install microsoft-windows-terminal -y
-choco install autohotkey -y
-choco install powertoys -y
-choco install googlechrome -y
-choco install spotify -y
+Write-Host "Installing Vim"
+winget install -e --id vim.vim
+Write-Host "Installing Git"
+winget install -e --id Git.Git
+Write-Host "Installing Powershell"
+winget install -e --id Microsoft.Powershell
+Write-Host "Installing Windows Terminal"
+winget install -e --id Microsoft.WindowsTerminal
+Write-Host "Installing Windows PowerToys"
+winget install -e --id Microsoft.PowerToys
+Write-Host "Installing Windows AutoHotKey"
+winget install -e --id AutoHotKey.AutoHotKey
+Write-Host "Installing Windows Chrome"
+winget install -e --id Google.Chrome
+Write-Host "Installing Windows Spotify"
+winget install -e --id Spotify.Spotify
+Write-Host "Installing Windows 1Password"
 winget install -e --id AgileBits.1Password
-
-Write-Host "Reloading environment variables so git will work"
-Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
-refreshenv
 
 $reposdir = DoIfNew -Name repos -At $env:HomeDrive { mkdir $Path }
 $westdir = DoIfNew -Name westryank -At "$env:HomeDrive/Users" { New-Item -ItemType junction -Name $Name -Path $At -Target $env:UserProfile }
@@ -40,6 +43,9 @@ $null = DoIfNew -Name repos -At $westdir { New-Item -ItemType junction -Name $Na
 
 Write-Host "Downloading settings files from git repo"
 $setupdir = "$env:HomeDrive/repos/setup"
+if (Test-Path $setupdir) {
+    rm $setupdir -recurse -force
+}
 git clone --depth 1 https://github.com/WestRyanK/SetupPC $setupdir
 
 Write-Host "Setting Windows to Dark Mode"
