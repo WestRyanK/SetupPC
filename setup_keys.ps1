@@ -1,10 +1,11 @@
 # https://docs.google.com/spreadsheets/d/1GSj0gKDxyWAecB3SIyEZ2ssPETZkkxn67gdIwL1zFUs/edit#gid=0
 # https://isenselabs.com/posts/keyboard-key-kills-and-remaps-for-windows-users
+# https://download.microsoft.com/download/1/6/1/161ba512-40e2-4cc9-843a-923143f3456c/translate.pdf
 
 # Remaps from one key to another at the system level
 
 $CapsLock = "3A,00"
-$PageDown = "51,00"
+$PageDown = "51,E0"
 
 $Remappings = @{
     $CapsLock = $PageDown;
