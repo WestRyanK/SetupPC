@@ -26,23 +26,26 @@ Write-Host "Installing Powershell"
 winget install -e --id Microsoft.PowerShell
 Write-Host "Installing Windows Terminal"
 winget install -e --id Microsoft.WindowsTerminal
-Write-Host "Installing Windows PowerToys"
+Write-Host "Installing PowerToys"
 winget install -e --id Microsoft.PowerToys
-Write-Host "Installing Windows AutoHotKey"
+Write-Host "Installing AutoHotKey"
 winget install -e --id AutoHotkey.AutoHotkey
-Write-Host "Installing Windows Chrome"
+Write-Host "Installing Chrome"
 winget install -e --id Google.Chrome
-Write-Host "Installing Windows Spotify"
+Write-Host "Installing Spotify"
 winget install -e --id Spotify.Spotify
-Write-Host "Installing Windows 1Password"
+Write-Host "Installing 1Password"
 winget install -e --id AgileBits.1Password
 if ((Read-Host "Install Steam? (y/n)") -eq "y") {
+    Write-Host "Installing Steam"
     winget install -e --id Valve.Steam
 }
 if ((Read-Host "Install Epic Games Launcher? (y/n)") -eq "y") {
+    Write-Host "Installing Epic Games Launcher"
     winget install -e --id EpicGames.EpicGamesLauncher
 }
 if ((Read-Host "Install Minecraft Launcher? (y/n)") -eq "y") {
+    Write-Host "Installing Minecraft Launcher"
     winget install -e --id Mojang.MinecraftLauncher
 }
 
