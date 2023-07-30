@@ -36,6 +36,15 @@ Write-Host "Installing Windows Spotify"
 winget install -e --id Spotify.Spotify
 Write-Host "Installing Windows 1Password"
 winget install -e --id AgileBits.1Password
+if ((Read-Host "Install Steam? (y/n)") -eq "y") {
+    winget install -e --id Valve.Steam
+}
+if ((Read-Host "Install Epic Games Launcher? (y/n)") -eq "y") {
+    winget install -e --id EpicGames.EpicGamesLauncher
+}
+if ((Read-Host "Install Minecraft Launcher? (y/n)") -eq "y") {
+    winget install -e --id Mojang.MinecraftLauncher
+}
 
 $reposdir = DoIfNew -Name repos -At $env:HomeDrive { mkdir $Path }
 $westdir = DoIfNew -Name westryank -At "$env:HomeDrive/Users" { New-Item -ItemType junction -Name $Name -Path $At -Target $env:UserProfile }
@@ -73,5 +82,4 @@ Write-Host "Rebinding some keyboard keys"
 
 Write-Host "Setup complete."
 Write-Host "Please restart your computer."
-Read-Host "Press any key to continue"
-
+Read-Host "Press Enter to Continue"
