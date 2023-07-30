@@ -73,4 +73,5 @@ Write-Host "Rebinding some keyboard keys"
 
 Write-Host "Setup complete."
 Write-Host "Please restart your computer."
+Read-Host "Press any key to continue"
 
