@@ -55,6 +55,10 @@ Function SettingsRepo-Status {
     }
 }
 
+Function SettingsRepo-Log {
+    git -C "$SettingsRepoRoot" log --graph --oneline --all
+}
+
 Function SettingsRepo-Diff {
     git -C "$SettingsRepoRoot" diff
 }
