@@ -58,7 +58,7 @@ $setupdir = "$env:HomeDrive/repos/setup"
 if (Test-Path $setupdir) {
     rm $setupdir -recurse -force
 }
-git clone --depth 1 https://github.com/WestRyanK/SetupPC $setupdir
+git clone https://github.com/WestRyanK/SetupPC $setupdir
 Get-ChildItem -Recurse -Path "$setupdir" -Force | Set-Acl -AclObject (Get-Acl "$Home/Documents")
 Set-Acl "$setupdir" -AclObject (Get-Acl "$Home/Documents")
 
