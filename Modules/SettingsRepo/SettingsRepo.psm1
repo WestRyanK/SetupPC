@@ -51,7 +51,7 @@ Function SettingsRepo-Status {
     $ChangedFiles = (git -C "$SettingsRepoRoot" status --short)
     if ($ChangedFiles) {
         Write-Host "The following settings have changed:"
-        Write-Host $ChangedFiles
+        Write-Host ($ChangedFiles -join "`n")
     }
     else {
         Write-Host "No settings have changed"
