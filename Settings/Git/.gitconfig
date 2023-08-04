@@ -1,0 +1,25 @@
+[credential "http://tfs.novarad.net:8080"]
+	provider = generic
+[user]
+	name = Ryan West
+	email = west.ryan.k@gmail.com
+[credential "https://tfs.novarad.net"]
+	provider = generic
+[diff]
+	tool = vsdiffmerge
+[difftool]
+#    prompt = true
+[difftool "vsdiffmerge"]
+	cmd = \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\vsdiffmerge.exe\" \"$LOCAL\" \"$REMOTE\" //t
+	keepBackup = false
+[merge]
+	tool = vsdiffmerge
+[mergetool]
+#	prompt = true
+    keepBackup = false
+[mergetool "vsdiffmerge"]
+	cmd = \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\vsdiffmerge.exe\" \"$REMOTE\" \"$LOCAL\" \"$BASE\" \"$MERGED\" //m
+	keepBackup = false
+	trustExitCode = true
+[push]
+	autoSetupRemote = true
