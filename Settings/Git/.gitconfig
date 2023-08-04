@@ -23,3 +23,5 @@
 	trustExitCode = true
 [push]
 	autoSetupRemote = true
+[core]
+	editor = nvim
