@@ -64,6 +64,11 @@ Function SettingsRepo-Log {
 
 Function SettingsRepo-Diff {
     git -C "$SettingsRepoRoot" diff
+    $UntrackedFiles = git -C "$SettingsRepoRoot" ls-files --others --exclude-standard
+    if ($UntrackedFiles -ne $null) {
+        Write-Host "The following are new files:"
+        Write-Host $UntrackedFiles
+    }
 }
 
 Function SettingsRepo-Reset {
