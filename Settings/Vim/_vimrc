@@ -72,15 +72,15 @@ syntax on
 
 
 " Change cursor on Insert Mode vs Normal Mode
-let &t_SI = "\e[6 q"
-let &t_EI = "\e[2 q"
+" Blinking Bar
+let &t_SI = "\e[5 q"
+" Blinking Block
+let &t_EI = "\e[3 q"
 
-" Optionally reset the cursor on start:
-augroup myCmds
-au!
-autocmd VimEnter * silent !echo -ne "\e[2 q"
-augroup END
-
+" Set Cursor to Blinking Block on Start
+"autocmd VimEnter * silent !echo -ne "\e[3 q"
+" Reset Cursor On Exit
+"autocmd VimLeave * silent !echo -ne "\e[5 q"
 
 set expandtab
 set tabstop=4
