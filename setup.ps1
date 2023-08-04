@@ -18,8 +18,8 @@ function PinToQuickAccess { param($FolderPath)
 
 
 Write-Host "Installing Applications"
-Write-Host "Installing Vim"
-winget install -e --id vim.vim
+Write-Host "Installing NeoVim"
+winget install -e --id Neovim.Neovim
 Write-Host "Installing Git"
 winget install -e --id Git.Git
 Write-Host "Installing Powershell"
