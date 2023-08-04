@@ -1,5 +1,7 @@
 Import-Module posh-git
 Import-Module SettingsRepo -DisableNameChecking
+Set-Alias -Name vim -Value nvim
+Set-Alias -Name vi -Value nvim
 
 Set-PSReadLineOption -EditMode vi
 function OnViModeChange {
