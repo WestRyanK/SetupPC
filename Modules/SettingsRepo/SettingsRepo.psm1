@@ -1,9 +1,9 @@
-$AllSettings = ("AutoHotKey", "OhMyPosh", "PowerToys", "Powershell", "Terminal", "Vim")
+$AllSettings = ("AutoHotKey", "Git", "OhMyPosh", "PowerToys", "Powershell", "Terminal", "Vim")
 $SettingsRepoRoot = "C:/repos/setup/Settings"
 
 Function SettingsRepo-Restore {
     param(
-        [ValidateSet("All", "AutoHotKey", "OhMyPosh", "PowerToys", "Powershell", "Terminal", "Vim")] 
+        [ValidateSet("All", "AutoHotKey", "Git", "OhMyPosh", "PowerToys", "Powershell", "Terminal", "Vim")] 
             [String] $Name
     )
 
@@ -21,7 +21,7 @@ Function SettingsRepo-Restore {
 
 Function SettingsRepo-Add {
     param(
-        [ValidateSet("All", "AutoHotKey", "OhMyPosh", "PowerToys", "Powershell", "Terminal", "Vim")]
+        [ValidateSet("All", "AutoHotKey", "Git", "OhMyPosh", "PowerToys", "Powershell", "Terminal", "Vim")]
             [String] $Name
     )
 
@@ -72,7 +72,7 @@ Function SettingsRepo-Reset {
 
 Function SettingsRepo-Commit {
     param(
-        [ValidateSet("All", "AutoHotKey", "OhMyPosh", "PowerToys", "Powershell", "Terminal", "Vim")]
+        [ValidateSet("All", "AutoHotKey", "Git", "OhMyPosh", "PowerToys", "Powershell", "Terminal", "Vim")]
             [String] $Name,
             [String] $Message
     )
