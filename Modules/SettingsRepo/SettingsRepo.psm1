@@ -31,7 +31,7 @@ Function SettingsRepo-Add {
         $Name = "All"
     }
 
-    git -C "$SettingsRepoRoot" pull
+    git -C "$SettingsRepoRoot" pull --rebase
 
     $Names | Foreach-Object {
         Write-Host "Adding $_ to repo..."
