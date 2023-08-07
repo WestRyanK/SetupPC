@@ -3,7 +3,6 @@ Import-Module SettingsRepo -DisableNameChecking
 Set-Alias -Name vim -Value nvim
 Set-Alias -Name vi -Value nvim
 
-Set-PSReadLineOption -EditMode vi
 function OnViModeChange {
     if ($args[0] -eq 'Command') {
         # Set the cursor to a blinking block.
@@ -13,8 +12,12 @@ function OnViModeChange {
         Write-Host -NoNewLine "`e[5 q"
     }
 }
+Set-PSReadLineOption -EditMode vi
 Set-PSReadLineOption -ViModeIndicator Script -ViModeChangeHandler $Function:OnViModeChange
 Set-PSReadLineOption -BellStyle visual
+if ((Get-Module PSReadLine).PrivateData.PSData.PreRelease -ne $null) {
+    Set-PSReadLineOption -ViClipboardMode SystemClipboard
+}
 
 # Use two quick presses of the 'j' key to exit Vim Insert mode in the PowerShell prompt
 $LastJTime = $null
