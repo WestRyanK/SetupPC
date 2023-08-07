@@ -81,7 +81,7 @@ PinToQuickAccess $westdir.Replace("/","\")
 PinToQuickAccess $reposdir.Replace("/","\")
 
 Write-Host "Rebinding some keyboard keys"
-. "$setupdir/setup_keys.ps1"
+. "$setupdir/setup_keyboard.ps1"
 
 Write-Host "Setup complete."
 Write-Host "Please restart your computer."
