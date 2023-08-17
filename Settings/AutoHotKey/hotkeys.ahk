@@ -13,10 +13,19 @@ return
 Run *RunAs wt.exe
 return
 
-^!j::
+; Vimmy Movement Everywhere!
+!j::
 Send {Down}
 return
 
-^!k::
+!k::
 Send {Up}
+return
+
+!h::
+Send {Left}
+return
+
+!l::
+Send {Right}
 return
