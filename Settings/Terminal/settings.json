@@ -14,14 +14,6 @@
         {
             "command": 
             {
-                "action": "moveFocus",
-                "direction": "up"
-            },
-            "keys": "ctrl+alt+k"
-        },
-        {
-            "command": 
-            {
                 "action": "resizePane",
                 "direction": "up"
             },
@@ -34,10 +26,17 @@
         {
             "command": 
             {
-                "action": "resizePane",
-                "direction": "left"
+                "action": "moveFocus",
+                "direction": "up"
             },
-            "keys": "alt+shift+h"
+            "keys": "ctrl+alt+k"
+        },
+        {
+            "command": 
+            {
+                "action": "scrollDown"
+            },
+            "keys": "ctrl+shift+j"
         },
         {
             "command": "find",
@@ -46,11 +45,10 @@
         {
             "command": 
             {
-                "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
+                "action": "resizePane",
+                "direction": "left"
             },
-            "keys": "alt+shift+d"
+            "keys": "alt+shift+h"
         },
         {
             "command": "unbound",
@@ -105,6 +103,23 @@
             "keys": "alt+k"
         },
         {
+            "command": "unbound",
+            "keys": "ctrl+shift+up"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+down"
+        },
+        {
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
+            "keys": "alt+shift+d"
+        },
+        {
             "command": "toggleFullscreen",
             "keys": "ctrl+alt+b"
         },
@@ -115,6 +130,13 @@
                 "direction": "right"
             },
             "keys": "ctrl+alt+l"
+        },
+        {
+            "command": 
+            {
+                "action": "scrollUp"
+            },
+            "keys": "ctrl+shift+k"
         },
         {
             "command": 
