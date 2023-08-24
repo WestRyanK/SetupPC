@@ -14,10 +14,10 @@
         {
             "command": 
             {
-                "action": "resizePane",
+                "action": "moveFocus",
                 "direction": "up"
             },
-            "keys": "alt+shift+k"
+            "keys": "ctrl+alt+k"
         },
         {
             "command": "paste",
@@ -26,17 +26,10 @@
         {
             "command": 
             {
-                "action": "moveFocus",
+                "action": "resizePane",
                 "direction": "up"
             },
-            "keys": "ctrl+alt+k"
-        },
-        {
-            "command": 
-            {
-                "action": "scrollDown"
-            },
-            "keys": "ctrl+shift+j"
+            "keys": "alt+shift+k"
         },
         {
             "command": "find",
@@ -49,6 +42,22 @@
                 "direction": "left"
             },
             "keys": "alt+shift+h"
+        },
+        {
+            "command": 
+            {
+                "action": "scrollDown"
+            },
+            "keys": "ctrl+shift+j"
+        },
+        {
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
+            "keys": "alt+shift+d"
         },
         {
             "command": "unbound",
@@ -109,15 +118,6 @@
         {
             "command": "unbound",
             "keys": "ctrl+shift+down"
-        },
-        {
-            "command": 
-            {
-                "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
-            },
-            "keys": "alt+shift+d"
         },
         {
             "command": "toggleFullscreen",
@@ -238,8 +238,8 @@
     "schemes": 
     [
         {
-            "background": "#0C0C0C",
-            "black": "#0C0C0C",
+            "background": "#1C1C1C",
+            "black": "#1C1C1C",
             "blue": "#0037DA",
             "brightBlack": "#767676",
             "brightBlue": "#3B78FF",
