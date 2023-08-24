@@ -78,4 +78,5 @@ filetype plugin on
 filetype indent on
 
 colorscheme darkblue
-highlight normal ctermbg=black
+highlight Normal ctermbg=black
+highlight LineNr ctermfg=240 ctermbg=0 cterm=none
