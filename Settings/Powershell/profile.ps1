@@ -54,3 +54,16 @@ oh-my-posh init pwsh --config "$home/.oh_my_posh.omp.json" | iex
 function Start-VsDevShell {
     & 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1' -SkipAutomaticLocation
 }
+
+function git-gr {
+    git log --graph --oneline --branches
+}
+
+function git-gra {
+    git log --graph --oneline --all
+}
+
+function git-PushNew {
+    $branch = (Get-GitStatus).Branch
+    git push --set-upstream origin ${branch}:dev/rwest/$branch
+}

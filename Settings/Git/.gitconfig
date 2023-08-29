@@ -22,6 +22,8 @@
 	keepBackup = false
 	trustExitCode = true
 [push]
-	autoSetupRemote = true
+#	autoSetupRemote = true
 [core]
 	editor = nvim
+[alias]
+	ch = checkout
