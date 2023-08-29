@@ -51,4 +51,6 @@ Set-PSReadLineKeyHandler -Chord 'Shift+PageDown' -Function ViTabCompletePrevious
 
 oh-my-posh init pwsh --config "$home/.oh_my_posh.omp.json" | iex
 
-& 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1' -SkipAutomaticLocation
+function Start-VsDevShell {
+    & 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1' -SkipAutomaticLocation
+}
