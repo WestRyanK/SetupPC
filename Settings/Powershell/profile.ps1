@@ -55,15 +55,61 @@ function Start-VsDevShell {
     & 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1' -SkipAutomaticLocation
 }
 
-function git-gr {
-    git log --graph --oneline --branches
-}
-
-function git-gra {
-    git log --graph --oneline --all
-}
-
 function git-PushNew {
     $branch = (Get-GitStatus).Branch
     git push --set-upstream origin ${branch}:dev/rwest/$branch
 }
+Set-Alias gitp git-PushNew
+
+function git-DeleteBranch {
+    param(
+        $branchName,
+        [switch] $force
+        )
+    if ($force) {
+        git branch -D $branchName
+    }
+    else {
+        git branch -d $branchName
+    }
+    if ($LASTEXITCODE -eq 0) {
+        git push -d origin dev/rwest/$branchName
+    }
+}
+Set-Alias gitd git-DeleteBranch
+
+function git-OpenModified {
+    $vsPath = "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\devenv.exe"
+    git-Status | Foreach-Object {
+        Start $vsPath -ArgumentList "/edit $($_.Name)"
+        Start-Sleep 2
+    }
+}
+Set-Alias gito git-OpenModified
+
+function git-Status {
+    $statusString = git status --porcelain 
+    $statusObjects = $statusString | Select-Object @{ 
+            Name = 'Status'; 
+            Expression = { $_.Substring(0, 1) } 
+        }, 
+        @{
+            Name = 'Status2'; 
+            Expression = { $_.Substring(1, 1) } 
+        }, 
+        @{ 
+            Name = 'Name'; 
+            Expression = { $_.Substring(3) } 
+        }
+    return $statusObjects
+}
+Set-Alias gits git-Status
+
+function MakeChange-Directory {
+    param(
+        [string] $Path
+        )
+    mkdir $Path
+    cd $Path
+}
+Set-Alias mkcd MakeChange-Directory
