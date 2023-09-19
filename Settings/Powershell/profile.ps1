@@ -80,32 +80,27 @@ function git-DeleteBranch {
 }
 Set-Alias gitd git-DeleteBranch
 
-function git-OpenModified {
+function Get-GitStatusWorking {
+    return (Get-GitStatus).Working
+}
+
+function Get-GitStatusIndex {
+    return (Get-GitStatus).Index
+}
+Set-Alias ggs Get-GitStatus
+Set-Alias ggsw Get-GitStatusWorking
+Set-Alias ggsi Get-GitStatusIndex
+
+function Open-GitStatus {
     $vsPath = "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\devenv.exe"
-    git-Status | Foreach-Object {
-        Start $vsPath -ArgumentList "/edit $($_.Name)"
-        Start-Sleep 2
+    $files = (Get-GitStatusWorking) + (Get-GitStatusIndex)
+    $files | Foreach-Object {
+        Start $vsPath -ArgumentList "/edit $_"
+        Start-Sleep 1
     }
 }
-Set-Alias gito git-OpenModified
+Set-Alias ogs Open-GitStatus
 
-function git-Status {
-    $statusString = git status --porcelain 
-    $statusObjects = $statusString | Select-Object @{ 
-            Name = 'Status'; 
-            Expression = { $_.Substring(0, 1) } 
-        }, 
-        @{
-            Name = 'Status2'; 
-            Expression = { $_.Substring(1, 1) } 
-        }, 
-        @{ 
-            Name = 'Name'; 
-            Expression = { $_.Substring(3) } 
-        }
-    return $statusObjects
-}
-Set-Alias gits git-Status
 
 function MakeChange-Directory {
     param(
