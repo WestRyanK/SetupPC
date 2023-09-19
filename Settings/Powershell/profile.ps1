@@ -1,3 +1,5 @@
+Set-Alias g git
+
 Import-Module posh-git
 Import-Module SettingsRepo -DisableNameChecking
 Set-Alias -Name vim -Value nvim
