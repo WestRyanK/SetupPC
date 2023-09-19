@@ -22,8 +22,17 @@
 	keepBackup = false
 	trustExitCode = true
 [push]
+	default = upstream
 #	autoSetupRemote = true
 [core]
 	editor = nvim
 [alias]
 	ch = checkout
+    br = branch
+    st = status
+    di = diff
+    pu = push
+    co = commit
+    cm = commit -m
+    g = log --graph --oneline --branches
+    ga = log --graph --oneline --all
