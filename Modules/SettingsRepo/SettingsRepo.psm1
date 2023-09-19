@@ -73,6 +73,7 @@ Function SettingsRepo-Diff {
 
 Function SettingsRepo-Reset {
     git -C "$SettingsRepoRoot" reset head --hard
+    git -C "$SettingsRepoRoot" clean -xfd
 }
 
 Function SettingsRepo-Commit {
