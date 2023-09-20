@@ -32,7 +32,8 @@
     br  = branch
     bd  = branch -d
     bD  = branch -D
-	ch  = checkout
+    bdr = !pwsh -command Remove-GitRemoteBranch
+    ch  = checkout
     chb = checkout -b
     cfg = config --global -e
     co  = commit
@@ -47,6 +48,8 @@
     mt  = mergetool
     p   = push
     pf  = push -f
+    # p   = !pwsh -command Invoke-GitPushDev
+    # pf  = !pwsh -command Invoke-GitPushDev -f
     rs  = reset
     rsh = reset --hard
     rb  = rebase

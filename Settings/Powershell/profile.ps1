@@ -57,28 +57,45 @@ function Start-VsDevShell {
     & 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1' -SkipAutomaticLocation
 }
 
-function git-PushNew {
-    $branch = (Get-GitStatus).Branch
-    git push --set-upstream origin ${branch}:dev/rwest/$branch
-}
-Set-Alias gitp git-PushNew
-
-function git-DeleteBranch {
+function Invoke-GitPushDev {
     param(
-        $branchName,
-        [switch] $force
-        )
+        [switch]$force
+    )
+
+    $forceString = $null
     if ($force) {
-        git branch -D $branchName
+        $forceString = "-f"
+    }
+
+    $status = Get-GitStatus
+    if ($status.Upstream) {
+        git push $forceString
     }
     else {
-        git branch -d $branchName
-    }
-    if ($LASTEXITCODE -eq 0) {
-        git push -d origin dev/rwest/$branchName
+        $branch = (Get-GitStatus).Branch
+        git push --set-upstream origin ${branch}:dev/rwest/$branch
     }
 }
-Set-Alias gitd git-DeleteBranch
+
+function Remove-GitRemoteBranch {
+    param(
+        $branchName
+        )
+
+    if ($branchName -eq $null) {
+        $branchName = (Get-GitStatus).Branch
+    }
+
+    $prefix = "refs/heads/"
+    $remoteName = git config --get-regexp "branch\.$branchName\.merge"
+    if ($remoteName -eq $null) {
+        Write-Host "error: unable to delete '$branchName': remote ref does not exist"
+        return
+    }
+    $remoteName = $remoteName.Substring($remoteName.IndexOf($prefix) + $prefix.Length)
+
+    git push -d origin $remoteName
+}
 
 function Get-GitStatusWorking {
     return (Get-GitStatus).Working
@@ -100,7 +117,6 @@ function Open-GitStatus {
     }
 }
 Set-Alias ogs Open-GitStatus
-
 
 function MakeChange-Directory {
     param(
