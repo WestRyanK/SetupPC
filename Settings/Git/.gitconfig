@@ -29,7 +29,7 @@
 [alias]
     a   = add
     aa  = add .
-    br  = branch
+    b   = branch
     bd  = branch -d
     bD  = branch -D
     bdr = !pwsh -command Remove-GitRemoteBranch
@@ -42,14 +42,16 @@
     con = commit --amend --no-edit
     d   = diff
     ds  = diff --staged
+    f   = fetch
     l   = log
-    g  = log --graph --oneline --branches
-    ga = log --graph --oneline --all
+    g   = log --graph --oneline --branches
+    ga  = log --graph --oneline --all
     mt  = mergetool
-    p   = push
-    pf  = push -f
-    # p   = !pwsh -command Invoke-GitPushDev
-    # pf  = !pwsh -command Invoke-GitPushDev -f
+    ps  = push
+    psf = push -f
+    pl  = pull
+    # ps  = !pwsh -command Invoke-GitPushDev
+    # psf = !pwsh -command Invoke-GitPushDev -f
     rs  = reset
     rsh = reset --hard
     rb  = rebase
