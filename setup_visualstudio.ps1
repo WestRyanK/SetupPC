@@ -36,3 +36,13 @@ Invoke-WebRequest -Uri $DownloadUrl -OutFile $DownloadPath
 Start-Process $DownloadPath -wait
 Remove-Item $DownloadPath
 
+$InstallAzure = Read-Host "Install Azure Powershell? (Y/N)"
+if ($InstallAzure -like "y*") {
+    Install-Module -name Az -repository PSGallery -force
+}
+
+$InstallBicep = Read-Host "Install Bicep? (Y/N)"
+if ($InstallBicep -like "y*") {
+    winget install -e --id Microsoft.Bicep
+}
+
