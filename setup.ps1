@@ -1,5 +1,12 @@
 #Requires -RunAsAdministrator
 
+function PromptInstall { param( [String] $Name, [ScriptBlock] $InstallBlock)
+    if ((Read-Host "Install $Name? (Y/N)") -like "y*") {
+        Write-Host "Installing $Name"
+        $InstallBlock.Invoke()
+    }
+}
+
 function DoIfNew { param ( $Name, $At, [scriptblock] $block)
     $Path = "$At/$Name"
     if (!(Test-Path $Path)) {
@@ -18,34 +25,40 @@ function PinToQuickAccess { param($FolderPath)
 
 
 Write-Host "Installing Applications"
-Write-Host "Installing NeoVim"
-winget install -e --id Neovim.Neovim
-Write-Host "Installing Git"
-winget install -e --id Git.Git
-Write-Host "Installing Powershell"
-winget install -e --id Microsoft.PowerShell
-Write-Host "Installing Windows Terminal"
-winget install -e --id Microsoft.WindowsTerminal
-Write-Host "Installing PowerToys"
-winget install -e --id Microsoft.PowerToys
-Write-Host "Installing AutoHotKey"
-winget install -e --id AutoHotkey.AutoHotkey
-Write-Host "Installing Chrome"
-winget install -e --id Google.Chrome
-Write-Host "Installing Spotify"
-winget install -e --id Spotify.Spotify
-Write-Host "Installing 1Password"
-winget install -e --id AgileBits.1Password
-if ((Read-Host "Install Steam? (y/n)") -eq "y") {
-    Write-Host "Installing Steam"
+PromptInstall "NeoVim" {
+    winget install -e --id Neovim.Neovim
+}
+PromptInstall "Git" {
+    winget install -e --id Git.Git
+}
+PromptInstall "Powershell" {
+    winget install -e --id Microsoft.PowerShell
+}
+PromptInstall "Windows Terminal" {
+    winget install -e --id Microsoft.WindowsTerminal
+}
+PromptInstall "PowerToys" {
+    winget install -e --id Microsoft.PowerToys
+}
+PromptInstall "AutoHotKey" {
+    winget install -e --id AutoHotkey.AutoHotkey
+}
+PromptInstall "Chrome" {
+    winget install -e --id Google.Chrome
+}
+PromptInstall "Spotify" {
+    winget install -e --id Spotify.Spotify
+}
+PromptInstall "1Password" {
+    winget install -e --id AgileBits.1Password
+}
+PromptInstall "Steam" {
     winget install -e --id Valve.Steam
 }
-if ((Read-Host "Install Epic Games Launcher? (y/n)") -eq "y") {
-    Write-Host "Installing Epic Games Launcher"
+PromptInstall "Epic Games Launcher" {
     winget install -e --id EpicGames.EpicGamesLauncher
 }
-if ((Read-Host "Install Minecraft Launcher? (y/n)") -eq "y") {
-    Write-Host "Installing Minecraft Launcher"
+PromptInstall "Minecraft Launcher" {
     winget install -e --id Mojang.MinecraftLauncher
 }
 
