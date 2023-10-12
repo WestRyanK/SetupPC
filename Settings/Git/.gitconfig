@@ -7,6 +7,7 @@
 	provider = generic
 [diff]
 	tool = vsdiffmerge
+    colormoved=zebra
 [difftool]
 #    prompt = true
 [difftool "vsdiffmerge"]
@@ -24,15 +25,21 @@
 [push]
 	default = upstream
 #	autoSetupRemote = true
+[fetch]
+    prune = true
+[pull]
+    rebase = true
 [core]
 	editor = nvim
 [alias]
     a   = add
     aa  = add .
+    ap  = add -p
     b   = branch
     bd  = branch -d
     bD  = branch -D
     bdr = !pwsh -command Remove-GitRemoteBranch
+    cl = !pwsh -command Git-CloseAndClean
     ch  = checkout
     chb = checkout -b
     cfg = config --global -e
@@ -52,8 +59,10 @@
     pl  = pull
     # ps  = !pwsh -command Invoke-GitPushDev
     # psf = !pwsh -command Invoke-GitPushDev -f
+    rep = remote prune origin
     rs  = reset
     rsh = reset --hard
+    rswip = reset head~
     rb  = rebase
     rbi = rebase -i
     rbc = rebase --continue
