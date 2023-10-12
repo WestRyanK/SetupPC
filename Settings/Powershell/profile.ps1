@@ -1,60 +1,75 @@
-Set-Alias g git
+function Test-Interactive {
+    $commandArgs = [Environment]::GetCommandLineArgs()
+    $hasNonInteractiveArgs = $commandArgs | Where-Object { ($_ -ilike "-NonI*") -or ($_ -ilike "-Com*") }
+    return [Environment]::UserInteractive -and !$hasNonInteractiveArgs
+}
+$interactive = Test-Interactive
 
-Import-Module posh-git
-Import-Module SettingsRepo -DisableNameChecking
-Set-Alias -Name vim -Value nvim
-Set-Alias -Name vi -Value nvim
+# Start Interactive
+if ($interactive) { 
+    Set-Alias g git
 
-function OnViModeChange {
-    if ($args[0] -eq 'Command') {
-        # Set the cursor to a blinking block.
-        Write-Host -NoNewLine "`e[1 q"
-    } else {
-        # Set the cursor to a blinking line.
-        Write-Host -NoNewLine "`e[5 q"
+    Import-Module posh-git
+
+    Import-Module SettingsRepo -DisableNameChecking
+    Set-Alias -Name vim -Value nvim
+    Set-Alias -Name vi -Value nvim
+    
+    function OnViModeChange {
+        if ($args[0] -eq 'Command') {
+            # Set the cursor to a blinking block.
+            Write-Host -NoNewLine "`e[1 q"
+        } else {
+            # Set the cursor to a blinking line.
+            Write-Host -NoNewLine "`e[5 q"
+        }
     }
-}
-Set-PSReadLineOption -EditMode vi
-Set-PSReadLineOption -ViModeIndicator Script -ViModeChangeHandler $Function:OnViModeChange
-Set-PSReadLineOption -BellStyle visual
-if ((Get-Module PSReadLine).PrivateData.PSData.PreRelease -ne $null) {
-    Set-PSReadLineOption -ViClipboardMode SystemClipboard
-}
-
+    Set-PSReadLineOption -EditMode vi
+    Set-PSReadLineOption -ViModeIndicator Script -ViModeChangeHandler $Function:OnViModeChange
+    Set-PSReadLineOption -BellStyle visual
+    if ((Get-Module PSReadLine).PrivateData.PSData.PreRelease -ne $null) {
+        Set-PSReadLineOption -ViClipboardMode SystemClipboard
+    }
+    
 # Use two quick presses of the 'j' key to exit Vim Insert mode in the PowerShell prompt
-$LastJTime = $null
-Set-PSReadLineKeyHandler -Chord j -ViMode Insert -ScriptBlock {
-    $LastJTime = $script:LastJTime
-    $script:LastJTime = Get-Date
-
-    if ($LastJTime -eq $null) {
-        $LastJTime = (Get-Date -Year 1 -Month 1 -Day 1)
+    $LastJTime = $null
+    Set-PSReadLineKeyHandler -Chord j -ViMode Insert -ScriptBlock {
+        $LastJTime = $script:LastJTime
+        $script:LastJTime = Get-Date
+    
+        if ($LastJTime -eq $null) {
+            $LastJTime = (Get-Date -Year 1 -Month 1 -Day 1)
+        }
+    
+        $TimeSinceLastJ = New-TimeSpan -Start $LastJTime -End (Get-Date)
+    
+        if (($TimeSinceLastJ.TotalSeconds) -lt .25) {
+            [Microsoft.PowerShell.PSConsoleReadLine]::BackwardDeleteChar()
+            [Microsoft.PowerShell.PSConsoleReadLine]::ViCommandMode()
+        }
+        else {
+            [Microsoft.PowerShell.PSConsoleReadLine]::Insert('j')
+        }
     }
-
-    $TimeSinceLastJ = New-TimeSpan -Start $LastJTime -End (Get-Date)
-
-    if (($TimeSinceLastJ.TotalSeconds) -lt .25) {
-        [Microsoft.PowerShell.PSConsoleReadLine]::BackwardDeleteChar()
-        [Microsoft.PowerShell.PSConsoleReadLine]::ViCommandMode()
-    }
-    else {
-        [Microsoft.PowerShell.PSConsoleReadLine]::Insert('j')
-    }
-}
-
+    
 # Use Tab for prediction completion and Capslock/Shift+Capslock to cycle options.
 # Only works when Capslock is bound to the PageDown key with Registry Tweak
-Remove-PSReadLineKeyHandler -Chord 'Shift+Tab'
-Set-PSReadLineKeyHandler -Chord 'Tab' -Function ForwardChar
-Set-PSReadLineKeyHandler -Chord 'PageDown' -Function TabCompleteNext
-Set-PSReadLineKeyHandler -Chord 'PageDown' -Function ViTabCompleteNext
-Set-PSReadLineKeyHandler -Chord 'Shift+PageDown' -Function TabCompletePrevious
-Set-PSReadLineKeyHandler -Chord 'Shift+PageDown' -Function ViTabCompletePrevious
+    Remove-PSReadLineKeyHandler -Chord 'Shift+Tab'
+    Set-PSReadLineKeyHandler -Chord 'Tab' -Function ForwardChar
+    Set-PSReadLineKeyHandler -Chord 'PageDown' -Function TabCompleteNext
+    Set-PSReadLineKeyHandler -Chord 'PageDown' -Function ViTabCompleteNext
+    Set-PSReadLineKeyHandler -Chord 'Shift+PageDown' -Function TabCompletePrevious
+    Set-PSReadLineKeyHandler -Chord 'Shift+PageDown' -Function ViTabCompletePrevious
 
-oh-my-posh init pwsh --config "$home/.oh_my_posh.omp.json" | iex
+    oh-my-posh init pwsh --config "$home/.oh_my_posh.omp.json" | iex
+} 
+# End Interactive
 
 function Start-VsDevShell {
-    & 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1' -SkipAutomaticLocation
+    if (-not $script:vsDevShellLoaded) {
+        & 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1' -SkipAutomaticLocation
+        $script:vsDevShellLoaded = $true
+    }
 }
 
 function Invoke-GitPushDev {
@@ -68,7 +83,7 @@ function Invoke-GitPushDev {
     }
 
     $status = Get-GitStatus
-    if ($status.Upstream) {
+    if ($status.Upstream -and !($status.UpstreamGone)) {
         git push $forceString
     }
     else {
@@ -126,3 +141,25 @@ function MakeChange-Directory {
     cd $Path
 }
 Set-Alias mkcd MakeChange-Directory
+
+function Git-CloseAndClean {
+    Stop-Process -Name devenv -ErrorAction SilentlyContinue
+    git clean -xfd
+}
+
+function Build-LocalNugetPackages {
+    Start-VsDevShell
+    Push-Location C:/repos/Graphics/
+    Git-CloseAndClean
+    msbuild -t:restore ./Analyzers.sln
+    msbuild ./Analyzers.sln /p:Configuration=Release /p:CI=true
+    Get-ChildItem -Recurse -Include "*.nupkg", "*.snupkg" | Foreach {
+        cp $_ C:/local_nuget
+    }
+}
+
+function Remove-CachedNovaradPackages {
+    Get-ChildItem C:\Users\westryank\.nuget\packages -Filter "novarad*" | Foreach-Object {
+        rm -recurse $_
+    }
+}
