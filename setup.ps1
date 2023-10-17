@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 
 function PromptInstall { param( [String] $Name, [ScriptBlock] $InstallBlock)
-    if ((Read-Host "Install $Name? (Y/N)") -like "y*") {
+    if ((Read-Host "Install ${Name}? (Y/N)") -like "y*") {
         Write-Host "Installing $Name"
         $InstallBlock.Invoke()
     }
