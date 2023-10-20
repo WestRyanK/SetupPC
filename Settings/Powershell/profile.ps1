@@ -66,9 +66,8 @@ if ($interactive) {
 # End Interactive
 
 function Start-VsDevShell {
-    if (-not $script:vsDevShellLoaded) {
+    if ((Get-Command "msbuild" -ErrorAction SilentlyContinue) -eq $null) {
         & 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1' -SkipAutomaticLocation
-        $script:vsDevShellLoaded = $true
     }
 }
 
@@ -133,17 +132,19 @@ function Open-GitStatus {
 }
 Set-Alias ogs Open-GitStatus
 
-function MakeChange-Directory {
+function Enter-NewDirectory {
     param(
         [string] $Path
         )
     mkdir $Path
     cd $Path
 }
-Set-Alias mkcd MakeChange-Directory
+Set-Alias mkcd Enter-NewDirectory
 
 function Git-CloseAndClean {
-    Stop-Process -Name devenv -ErrorAction SilentlyContinue
+    $processes = Get-Process -name devenv -ErrorAction SilentlyContinue
+    $processes | Foreach-Object { $_.CloseMainWindow() }
+    $processes | Wait-Process
     git clean -xfd
 }
 
@@ -163,3 +164,8 @@ function Remove-CachedNovaradPackages {
         rm -recurse $_
     }
 }
+
+function Enter-GraphicsRepo {
+    Set-Location C:/repos/Graphics
+}
+Set-Alias repog Enter-GraphicsRepo
