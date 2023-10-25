@@ -54,6 +54,11 @@ PromptInstall "1Password" {
 }
 PromptInstall "Scrcpy (Mirror Android Screen)" {
     winget install -e --id Genymobile.scrcpy
+    $WinGetLinks = "$env:LocalAppData/Microsoft/WinGet/Links"
+    $WinGetPackages = "$env:LocalAppData/Microsoft/WinGet/Packages"
+    $executableFile = Get-ChildItem -Recurse -Path $WinGetPackages -Filter "scrcpy.exe"
+    Remove-Item -Path "$WinGetLinks/scrcpy.exe"
+    Set-Content -Path "$WinGetLinks/scrcpy.ps1" -Value $($executableFile.FullName)
 }
 PromptInstall "Steam" {
     winget install -e --id Valve.Steam
