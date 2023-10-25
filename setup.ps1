@@ -58,7 +58,7 @@ PromptInstall "Scrcpy (Mirror Android Screen)" {
     $WinGetPackages = "$env:LocalAppData/Microsoft/WinGet/Packages"
     $executableFile = Get-ChildItem -Recurse -Path $WinGetPackages -Filter "scrcpy.exe"
     Remove-Item -Path "$WinGetLinks/scrcpy.exe"
-    Set-Content -Path "$WinGetLinks/scrcpy.ps1" -Value $($executableFile.FullName)
+    Set-Content -Path "$WinGetLinks/scrcpy.ps1" -Value "$($executableFile.FullName) `$args"
 }
 PromptInstall "Steam" {
     winget install -e --id Valve.Steam
