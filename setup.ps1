@@ -52,6 +52,9 @@ PromptInstall "Spotify" {
 PromptInstall "1Password" {
     winget install -e --id AgileBits.1Password
 }
+PromptInstall "Scrcpy (Mirror Android Screen)" {
+    winget install -e --id Genymobile.scrcpy
+}
 PromptInstall "Steam" {
     winget install -e --id Valve.Steam
 }
