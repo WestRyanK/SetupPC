@@ -145,7 +145,8 @@ function Git-CloseAndClean {
     $processes = Get-Process -name devenv -ErrorAction SilentlyContinue
     $processes | Foreach-Object { $_.CloseMainWindow() }
     $processes | Wait-Process
-    git clean -xfd
+    # git clean -X leaves untracked files while -x deletes untracked files. I've burned myself several times by accidentally deleting new untracked files with -x
+    git clean -Xfd
 }
 
 function Build-LocalNugetPackages {
