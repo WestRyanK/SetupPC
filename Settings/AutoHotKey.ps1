@@ -3,9 +3,9 @@ $ScriptsPath = "$Home/AutoHotKey"
 
 Function Backup {
     if (Test-Path $BackupPath) {
-        Get-ChildItem -Path $BackupPath -Exclude "Lib" | Remove-Item -Recurse -Force
+        Get-ChildItem -Path $BackupPath | Remove-Item -Recurse -Force
     }
-    Get-ChildItem -Path $ScriptsPath -Exclude "Lib" | Copy-Item -Destination $BackupPath -Recurse -Force
+    Get-ChildItem -Path $ScriptsPath | Copy-Item -Destination $BackupPath -Recurse -Force
 }
 
 Function Restore {
