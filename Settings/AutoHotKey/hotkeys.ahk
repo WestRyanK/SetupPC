@@ -9,6 +9,7 @@ DetectHiddenWindows, On
 ; ! Alt
 ; ^ Ctrl
 ; + Shift
+; ` Escapes special characters like semicolon (or can just represent the ` key itself. confusing...)
 
 
 #+`:: 
@@ -37,68 +38,9 @@ LayerOn := false
 $`;::
     LayerOn := true
     KeyWait, `;, T.15
-    if (ErrorLevel) {
-    }
-    else {
+    if (ErrorLevel == 0) {
         Send {`;}
     }
     KeyWait, `;
     LayerOn := false
     return
-
-; CancelSpace := false
-; LayerOn := false
-; $Space::
-;     LayerOn := false
-;     KeyWait, Space, T.15
-;     if (ErrorLevel) {
-;         LayerOn := true
-;     }
-;     else {
-;         if (CancelSpace == false) {
-;             Send {Space}
-;         }
-;         CancelSpace:=false
-;         LayerOn := false
-;         return
-;     }
-;     KeyWait, Space
-;     LayerOn := false
-;     return
-
-; Fix(Letter) {
-;     global CancelSpace
-;     Send {Space}%Letter%
-;     CancelSpace := true
-; }
-
-; #If LayerOn == false && GetKeyState("Space", "P") 
-;     a::Fix("a")
-;     b::Fix("b")
-;     c::Fix("c")
-;     d::Fix("d")
-;     e::Fix("e")
-;     f::Fix("f")
-;     g::Fix("g")
-;     h::Fix("h")
-;     i::Fix("i")
-;     j::Fix("j")
-;     k::Fix("k")
-;     l::Fix("l")
-;     m::Fix("m")
-;     n::Fix("n")
-;     o::Fix("o")
-;     p::Fix("p")
-;     q::Fix("q")
-;     r::Fix("r")
-;     s::Fix("s")
-;     t::Fix("t")
-;     u::Fix("u")
-;     v::Fix("v")
-;     w::Fix("w")
-;     x::Fix("x")
-;     y::Fix("y")
-;     z::Fix("z")
-;     =::Fix("=")
-;     -::Fix("-")
-; #If
