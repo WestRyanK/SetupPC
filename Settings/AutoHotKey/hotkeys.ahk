@@ -28,7 +28,8 @@ DetectHiddenWindows, On
     j::Down
     k::Up
     l::Right
-    d::Delete
+    x::Delete
+    X::Backspace
     n::Home
     m::End
 #If
