@@ -170,3 +170,21 @@ function Enter-GraphicsRepo {
     Set-Location C:/repos/Graphics
 }
 Set-Alias repog Enter-GraphicsRepo
+
+function Start-Chrome {
+    $Address = ($args -Join " ")
+    $shortcuts = @{
+        "tfs" = "https://tfs.novarad.net/tfs/defaultcollection/Novarad";
+        "gmail" = "https://gmail.com"
+    }
+    if ($shortcuts.Contains($Address)) {
+        $Address = $shortcuts[$Address]
+    }
+    if ($Address -NotLike "*.*") {
+        $Address = $Address.Replace(" ", "+")
+        $Address = "google.com/search?q=$Address"
+        Write-Host "Is search: $Address"
+    }
+    Start-Process "C:\Program Files\Google\Chrome\Application\chrome.exe" -ArgumentList "$Address"
+}
+Set-Alias cr Start-Chrome
