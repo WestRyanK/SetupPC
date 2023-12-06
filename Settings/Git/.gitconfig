@@ -8,6 +8,7 @@
 [diff]
 	tool = vsdiffmerge
     colormoved=zebra
+    context=10
 [difftool]
 #    prompt = true
 [difftool "vsdiffmerge"]
