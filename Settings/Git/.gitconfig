@@ -47,6 +47,10 @@
     com = commit -m
     coa = commit --amend
     con = commit --amend --no-edit
+    cowip = commit -m "WIP"
+    cp  = cherry-pick
+    cpc = cherry-pick --continue
+    cpa = cherry-pick --abort
     d   = diff
     ds  = diff --staged
     f   = fetch
@@ -68,3 +72,4 @@
     rbc = rebase --continue
     rba = rebase --abort
     s   = status
+    sh  = stash
