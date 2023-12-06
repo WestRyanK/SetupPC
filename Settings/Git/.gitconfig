@@ -74,3 +74,5 @@
     rba = rebase --abort
     s   = status
     sh  = stash
+[init]
+	defaultBranch = main
