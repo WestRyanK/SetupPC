@@ -1,3 +1,8 @@
+# https://github.com/dfinke/PowerShellAI
+# To use ChatGPT in PowerShell, move the following line outside
+# the SetupPC region. Then fill in the API key from 1Password:
+# $env:OpenAIKey = 'your-api-key-here'
+
 function Test-Interactive {
     $commandArgs = [Environment]::GetCommandLineArgs()
     $hasNonInteractiveArgs = $commandArgs | Where-Object { ($_ -ilike "-NonI*") -or ($_ -ilike "-Com*") }
