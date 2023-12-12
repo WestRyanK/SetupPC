@@ -151,3 +151,8 @@ function Start-Chrome {
     Start-Process "C:\Program Files\Google\Chrome\Application\chrome.exe" -ArgumentList "$Address"
 }
 Set-Alias cr Start-Chrome
+
+function Start-MyGitWatcher {
+    Start-GitWatcher -Quake
+}
+Set-Alias gw Start-MyGitWatcher
