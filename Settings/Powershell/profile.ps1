@@ -59,22 +59,31 @@ function Invoke-GitPushDev {
     }
 }
 
+function Get-GitRemoteBranch {
+    param([string] $BranchName)
+
+    if ([string]::IsNullOrWhitespace($BranchName)) {
+        $BranchName = (git status) | Where-Object { $_ -match "On branch (.+)" } | Foreach-Object { $Matches[1] }
+    }
+
+    $Prefix = "refs/heads/"
+    $RemoteName = git config --get-regexp "branch\.$BranchName\.merge"
+    if ($null -eq $RemoteName) {
+        return $null
+    }
+    return $RemoteName.Substring($RemoteName.IndexOf($Prefix) + $Prefix.Length)
+}
+
 function Remove-GitRemoteBranch {
     param(
         $branchName
         )
 
-    if ($branchName -eq $null) {
-        $branchName = (Get-GitStatus).Branch
-    }
-
-    $prefix = "refs/heads/"
-    $remoteName = git config --get-regexp "branch\.$branchName\.merge"
-    if ($remoteName -eq $null) {
+    $RemoteName = Get-GitRemoteBranch
+    if ($null -eq $RemoteName) {
         Write-Host "error: unable to delete '$branchName': remote ref does not exist"
         return
     }
-    $remoteName = $remoteName.Substring($remoteName.IndexOf($prefix) + $prefix.Length)
 
     git push -d origin $remoteName
 }
@@ -161,3 +170,16 @@ function Start-MyGitWatcher {
     Start-GitWatcher -Quake
 }
 Set-Alias gw Start-MyGitWatcher
+
+function Invoke-GitRemoteUrl {
+    Start-Process (git config --get remote.origin.url)
+}
+
+function Invoke-GitPullRequest {
+    $OriginUrl = git config --get remote.origin.url
+    $DefaultBranch = (git remote show origin) | Where-Object { $_ -match "HEAD branch\: (.+)" } | Foreach-Object { $Matches[1] }
+    $RemoteBranch = [System.Web.HttpUtility]::UrlEncode( (Get-GitRemoteBranch) )
+    $PullRequestUrl = "$OriginUrl/pullrequestcreate?sourceRef=$RemoteBranch&targetRef=$DefaultBranch"
+
+    Start-Process $PullRequestUrl
+}
