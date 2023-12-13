@@ -1,1 +1,38 @@
-{"applied-layouts":[{"device":{"monitor":"DEL4065","monitor-instance":"4&15f5ab1f&0&UID24645","serial-number":"PH5NY0BA225L","monitor-number":1,"virtual-desktop":"{023C2D5D-13E0-4BAE-8698-029F9B7D31A3}"},"applied-layout":{"uuid":"{00000000-0000-0000-0000-000000000000}","type":"priority-grid","show-spacing":true,"spacing":16,"zone-count":3,"sensitivity-radius":20}},{"device":{"monitor":"DEL4037","monitor-instance":"4&15f5ab1f&0&UID41030","serial-number":"G525H941125L","monitor-number":2,"virtual-desktop":"{023C2D5D-13E0-4BAE-8698-029F9B7D31A3}"},"applied-layout":{"uuid":"{00000000-0000-0000-0000-000000000000}","type":"priority-grid","show-spacing":true,"spacing":16,"zone-count":3,"sensitivity-radius":20}}]}
+{
+  "applied-layouts": [
+    {
+      "device": {
+        "monitor": "DEL4065",
+        "monitor-instance": "4\u002615f5ab1f\u00260\u0026UID24645",
+        "monitor-number": 1,
+        "serial-number": "PH5NY0BA225L",
+        "virtual-desktop": "{023C2D5D-13E0-4BAE-8698-029F9B7D31A3}"
+      },
+      "applied-layout": {
+        "uuid": "{8C381B04-57DE-4F22-9534-07275BBCCC93}",
+        "type": "custom",
+        "show-spacing": true,
+        "spacing": 0,
+        "zone-count": 3,
+        "sensitivity-radius": 15
+      }
+    },
+    {
+      "device": {
+        "monitor": "DEL4037",
+        "monitor-instance": "4\u002615f5ab1f\u00260\u0026UID41030",
+        "monitor-number": 2,
+        "serial-number": "G525H941125L",
+        "virtual-desktop": "{023C2D5D-13E0-4BAE-8698-029F9B7D31A3}"
+      },
+      "applied-layout": {
+        "uuid": "{8C381B04-57DE-4F22-9534-07275BBCCC93}",
+        "type": "custom",
+        "show-spacing": true,
+        "spacing": 0,
+        "zone-count": 3,
+        "sensitivity-radius": 15
+      }
+    }
+  ]
+}
