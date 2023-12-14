@@ -59,6 +59,8 @@
     g   = log --graph --oneline --branches
     ga  = log --graph --oneline --all
     mt  = mergetool
+    or  = !pwsh -command Invoke-GitRemoteUrl
+    opr = !pwsh -command Invoke-GitPullRequest
     ps  = push
     psf = push -f
     pl  = pull
