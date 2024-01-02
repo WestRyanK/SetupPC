@@ -38,7 +38,8 @@ function Get-VsPath {
     if (!(Get-Command Get-VsSetupInstance -ErrorAction SilentlyContinue)) {
         Install-Module VSSetup -Scope CurrentUser
     }
-    return (Get-VsSetupInstance).InstallationPath
+     $Installation = Get-VSSetupInstance | Sort-Object -Property InstallationVersion -Descending | Select-Object -First 1
+     return $Installation.InstallationPath
 }
 
 function Start-VsDevShell {
