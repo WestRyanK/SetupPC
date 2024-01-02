@@ -33,10 +33,23 @@ if ($interactive) {
 } 
 # End Interactive
 
-function Start-VsDevShell {
-    if ((Get-Command "msbuild" -ErrorAction SilentlyContinue) -eq $null) {
-        & 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1' -SkipAutomaticLocation
+
+function Get-VsPath {
+    if (!(Get-Command Get-VsSetupInstance -ErrorAction SilentlyContinue)) {
+        Install-Module VSSetup -Scope CurrentUser
     }
+    return (Get-VsSetupInstance).InstallationPath
+}
+
+function Start-VsDevShell {
+    $VsPath = Get-VsPath
+    if ($null -eq $VsPath) {
+        Write-Error "Visual Studio is not installed"
+        return
+    }
+    $DevShellPath = [System.IO.Path]::Join($VsPath, "Common7", "Tools", "Launch-VsDevShell.ps1")
+
+    & $DevShellPath -SkipAutomaticLocation
 }
 
 function Invoke-GitPushDev {
@@ -100,10 +113,16 @@ Set-Alias ggsw Get-GitStatusWorking
 Set-Alias ggsi Get-GitStatusIndex
 
 function Open-GitStatus {
-    $vsPath = "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\devenv.exe"
+    $VsPath = Get-VsPath
+    if ($null -eq $VsPath) {
+        Write-Error "Visual Studio is not installed"
+        return
+    }
+    $DevEnvPath = [System.IO.Path]::Join($VsPath, "Common7", "IDE", "devenv.exe")
+    
     $files = (Get-GitStatusWorking) + (Get-GitStatusIndex)
     $files | Foreach-Object {
-        Start $vsPath -ArgumentList "/edit $_"
+        Start $DevEnvPath -ArgumentList "/edit $_"
         Start-Sleep 1
     }
 }
