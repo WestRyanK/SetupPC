@@ -52,8 +52,8 @@
     cp  = cherry-pick
     cpc = cherry-pick --continue
     cpa = cherry-pick --abort
-    d   = diff
-    ds  = diff --staged
+    d   = show-whitespace diff
+    ds  = show-whitespace diff --staged
     f   = fetch
     l   = log
     g   = log --graph --oneline --branches
@@ -76,5 +76,9 @@
     rba = rebase --abort
     s   = status
     sh  = stash
+
+    show-whitespace = !git -c core.pager='sed s/\\ /·/g | sed s/\\\t/￫\\ \\ \\ /g | less -R' $@ && :
 [init]
 	defaultBranch = main
+#[core]
+    #pager = sed 's/ /·/g' | sed 's/\t/[90m→[0m       /g' | less -R
