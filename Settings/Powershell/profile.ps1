@@ -199,7 +199,17 @@ function Invoke-GitPullRequest {
     $OriginUrl = git config --get remote.origin.url
     $DefaultBranch = (git remote show origin) | Where-Object { $_ -match "HEAD branch\: (.+)" } | Foreach-Object { $Matches[1] }
     $RemoteBranch = [System.Web.HttpUtility]::UrlEncode( (Get-GitRemoteBranch) )
-    $PullRequestUrl = "$OriginUrl/pullrequestcreate?sourceRef=$RemoteBranch&targetRef=$DefaultBranch"
+    if ($OriginUrl.Contains("tfs")) {
+        $PullRequestUrl = "${OriginUrl}/pullrequestcreate?sourceRef=${RemoteBranch}&targetRef=${DefaultBranch}"
+    }
+    elseif ($OriginUrl.Contains("github")) {
+        $OriginUrl = $OriginUrl.SubString(0, $OriginUrl.Length - 4)
+        $PullRequestUrl = "${OriginUrl}/compare/${DefaultBranch}...${RemoteBranch}?quick_pull=1"
+    }
+    else {
+        Write-Host "Cannot open pull request for '$OriginUrl'"
+        return
+    }
 
     Start-Process $PullRequestUrl
 }
