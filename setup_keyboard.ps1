@@ -6,9 +6,10 @@
 
 $CapsLock = "3A,00"
 $PageDown = "51,E0"
+$F24      = "76,00"
 
 $Remappings = @{
-    $CapsLock = $PageDown;
+    $CapsLock = $F24;
 }
 
 $RemapRemappingsString = ""
