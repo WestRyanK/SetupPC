@@ -26,8 +26,8 @@ if ($interactive) {
 # Only works when Capslock is bound to the PageDown key with Registry Tweak
     Remove-PSReadLineKeyHandler -Chord 'Shift+Tab'
     Set-PSReadLineKeyHandler -Chord 'Tab' -Function ForwardChar
-    Set-PSReadLineKeyHandler -Chord 'PageDown' -Function TabCompleteNext
-    Set-PSReadLineKeyHandler -Chord 'Shift+PageDown' -Function TabCompletePrevious
+    Set-PSReadLineKeyHandler -Chord 'F24' -Function TabCompleteNext
+    Set-PSReadLineKeyHandler -Chord 'Shift+F24' -Function TabCompletePrevious
 
     oh-my-posh init pwsh --config "$home/.oh_my_posh.omp.json" | iex
 } 
