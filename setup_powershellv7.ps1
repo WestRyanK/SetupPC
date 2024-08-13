@@ -7,5 +7,7 @@ SettingsRepo-Restore All
 
 . "$PSScriptRoot/Modules/install_psreadline.ps1"
 
+#Install-Module -Name Az -Repository PSGallery -Force
+
 Write-Host "Press Enter to close"
 Read-Host
