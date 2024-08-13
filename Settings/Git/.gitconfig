@@ -32,6 +32,8 @@
     rebase = true
 [core]
 	editor = nvim
+	autocrlf = true
+	whitespace = cr-at-eol
 [alias]
     a   = add
     aa  = add .
