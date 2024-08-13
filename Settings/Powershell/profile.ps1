@@ -200,7 +200,7 @@ function Invoke-GitPullRequest {
     $OriginUrl = git config --get remote.origin.url
     $DefaultBranch = (git remote show origin) | Where-Object { $_ -match "HEAD branch\: (.+)" } | Foreach-Object { $Matches[1] }
     $RemoteBranch = [System.Web.HttpUtility]::UrlEncode( (Get-GitRemoteBranch) )
-    if ($OriginUrl.Contains("tfs")) {
+    if ($OriginUrl.Contains("_git")) {
         $PullRequestUrl = "${OriginUrl}/pullrequestcreate?sourceRef=${RemoteBranch}&targetRef=${DefaultBranch}"
     }
     elseif ($OriginUrl.Contains("github")) {
