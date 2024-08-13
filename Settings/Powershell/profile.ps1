@@ -94,7 +94,7 @@ function Remove-GitRemoteBranch {
         $branchName
         )
 
-    $RemoteName = Get-GitRemoteBranch
+    $RemoteName = Get-GitRemoteBranch $branchName
     if ($null -eq $RemoteName) {
         Write-Host "error: unable to delete '$branchName': remote ref does not exist"
         return
