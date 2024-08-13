@@ -5,7 +5,8 @@
 
 function Test-Interactive {
     $commandArgs = [Environment]::GetCommandLineArgs()
-    $hasNonInteractiveArgs = $commandArgs | Where-Object { ($_ -ilike "-NonI*") -or ($_ -ilike "-Com*") }
+    $hasNonInteractiveArgs = $commandArgs | Where-Object { ($_ -ilike "-NonI*") }
+    # $hasNonInteractiveArgs = $commandArgs | Where-Object { ($_ -ilike "-NonI*") -or ($_ -ilike "-Com*") }
     return [Environment]::UserInteractive -and !$hasNonInteractiveArgs
 }
 $interactive = Test-Interactive
