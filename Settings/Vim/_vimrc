@@ -26,10 +26,6 @@ nnoremap <CR> o<Esc>
 inoremap <silent> jj <Esc>
 inoremap <silent> ;; <Esc>A;<Esc>
 
-" In insert mode move to begin and end of line with kk and vv
-inoremap kk <Esc>A
-inoremap vv <Esc>I
-
 " Split line at cursor
 " nnoremap <C-Enter> i<CR><Esc>k$ " BROKEN
 
@@ -47,11 +43,11 @@ set timeoutlen=250
 nnoremap x "_x
 
 " Make 0 jump to first non-whitespace character on line (like underscore does)
-nnoremap 0 0_
+" nnoremap 0 0_
 
 " Space in normal mode highlights the word or WORD
 nnoremap <space> viw
-nnoremap <S-space> viW
+nnoremap <C-space> viW
 
 " CTRL-A is Select all
 nnoremap <C-a> gg<S-v>G
