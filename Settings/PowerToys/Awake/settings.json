@@ -1,1 +1,1 @@
-{"properties":{"keepDisplayOn":false,"mode":0,"intervalHours":0,"intervalMinutes":0,"expirationDateTime":"2023-07-24T16:01:47.9955753-06:00","customTrayTimes":{}},"name":"Awake","version":"0.0.2"}
+{"properties":{"keepDisplayOn":true,"mode":0,"intervalHours":0,"intervalMinutes":0,"expirationDateTime":"2023-07-24T16:01:47.9955753-06:00","customTrayTimes":{}},"name":"Awake","version":"1.0"}

@@ -69,6 +69,126 @@
         "spacing": 0,
         "sensitivity-radius": 15
       }
+    },
+    {
+      "uuid": "{5991A381-7BAC-4331-BACE-62F4C7873EBA}",
+      "name": "1:2",
+      "type": "grid",
+      "info": {
+        "rows": 2,
+        "columns": 2,
+        "rows-percentage": [
+          5001,
+          4999
+        ],
+        "columns-percentage": [
+          6836,
+          3164
+        ],
+        "cell-child-map": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "show-spacing": true,
+        "spacing": 0,
+        "sensitivity-radius": 15
+      }
+    },
+    {
+      "uuid": "{96225867-D6CA-4A20-B546-85DAD3F3198A}",
+      "name": "2:1",
+      "type": "grid",
+      "info": {
+        "rows": 2,
+        "columns": 2,
+        "rows-percentage": [
+          5001,
+          4999
+        ],
+        "columns-percentage": [
+          3164,
+          6836
+        ],
+        "cell-child-map": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "show-spacing": true,
+        "spacing": 0,
+        "sensitivity-radius": 15
+      }
+    },
+    {
+      "uuid": "{CC63BB49-C46B-4F3E-A49A-05F196157822}",
+      "name": "2:2",
+      "type": "grid",
+      "info": {
+        "rows": 2,
+        "columns": 2,
+        "rows-percentage": [
+          5000,
+          5000
+        ],
+        "columns-percentage": [
+          5000,
+          5000
+        ],
+        "cell-child-map": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "show-spacing": true,
+        "spacing": -5,
+        "sensitivity-radius": 20
+      }
+    },
+    {
+      "uuid": "{D71374A7-DCEA-490C-9034-B866DBF46E00}",
+      "name": "2:2 Large Top",
+      "type": "grid",
+      "info": {
+        "rows": 2,
+        "columns": 2,
+        "rows-percentage": [
+          5324,
+          4676
+        ],
+        "columns-percentage": [
+          5000,
+          5000
+        ],
+        "cell-child-map": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "show-spacing": true,
+        "spacing": 0,
+        "sensitivity-radius": 20
+      }
     }
   ]
 }

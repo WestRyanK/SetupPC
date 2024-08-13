@@ -2,14 +2,31 @@
   "applied-layouts": [
     {
       "device": {
-        "monitor": "DEL4065",
-        "monitor-instance": "4\u002615f5ab1f\u00260\u0026UID24645",
+        "monitor": "ACR0934",
+        "monitor-instance": "4\u002630cd1115\u00260\u0026UID45127",
         "monitor-number": 1,
-        "serial-number": "PH5NY0BA225L",
-        "virtual-desktop": "{023C2D5D-13E0-4BAE-8698-029F9B7D31A3}"
+        "serial-number": "TPSAA0018522",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
       },
       "applied-layout": {
-        "uuid": "{8C381B04-57DE-4F22-9534-07275BBCCC93}",
+        "uuid": "{D71374A7-DCEA-490C-9034-B866DBF46E00}",
+        "type": "custom",
+        "show-spacing": true,
+        "spacing": 0,
+        "zone-count": 3,
+        "sensitivity-radius": 20
+      }
+    },
+    {
+      "device": {
+        "monitor": "DELD145",
+        "monitor-instance": "4\u002630cd1115\u00260\u0026UID49479",
+        "monitor-number": 2,
+        "serial-number": "F43KMY3",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
+      },
+      "applied-layout": {
+        "uuid": "{96225867-D6CA-4A20-B546-85DAD3F3198A}",
         "type": "custom",
         "show-spacing": true,
         "spacing": 0,
@@ -19,19 +36,325 @@
     },
     {
       "device": {
-        "monitor": "DEL4037",
-        "monitor-instance": "4\u002615f5ab1f\u00260\u0026UID41030",
-        "monitor-number": 2,
-        "serial-number": "G525H941125L",
-        "virtual-desktop": "{023C2D5D-13E0-4BAE-8698-029F9B7D31A3}"
+        "monitor": "DELD144",
+        "monitor-instance": "4\u002630cd1115\u00260\u0026UID53831",
+        "monitor-number": 3,
+        "serial-number": "C43KMY3",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
       },
       "applied-layout": {
-        "uuid": "{8C381B04-57DE-4F22-9534-07275BBCCC93}",
+        "uuid": "{5991A381-7BAC-4331-BACE-62F4C7873EBA}",
         "type": "custom",
         "show-spacing": true,
         "spacing": 0,
         "zone-count": 3,
         "sensitivity-radius": 15
+      }
+    },
+    {
+      "device": {
+        "monitor": "\\\\.\\DISPLAY1",
+        "monitor-instance": "",
+        "monitor-number": 0,
+        "serial-number": "",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
+      },
+      "applied-layout": {
+        "uuid": "{1580F043-AA30-4AEA-AFDB-456E3282E297}",
+        "type": "custom",
+        "show-spacing": true,
+        "spacing": 0,
+        "zone-count": 0,
+        "sensitivity-radius": 0
+      }
+    },
+    {
+      "device": {
+        "monitor": "DELD144",
+        "monitor-instance": "4\u002630cd1115\u00260\u0026UID45127",
+        "monitor-number": 1,
+        "serial-number": "F43KMY3",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
+      },
+      "applied-layout": {
+        "uuid": "{5991A381-7BAC-4331-BACE-62F4C7873EBA}",
+        "type": "custom",
+        "show-spacing": true,
+        "spacing": 0,
+        "zone-count": 3,
+        "sensitivity-radius": 15
+      }
+    },
+    {
+      "device": {
+        "monitor": "DELD144",
+        "monitor-instance": "4\u002630cd1115\u00260\u0026UID24629",
+        "monitor-number": 2,
+        "serial-number": "F43KMY3",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
+      },
+      "applied-layout": {
+        "uuid": "{96225867-D6CA-4A20-B546-85DAD3F3198A}",
+        "type": "custom",
+        "show-spacing": true,
+        "spacing": 0,
+        "zone-count": 3,
+        "sensitivity-radius": 15
+      }
+    },
+    {
+      "device": {
+        "monitor": "DELD144",
+        "monitor-instance": "4\u002630cd1115\u00260\u0026UID61512",
+        "monitor-number": 2,
+        "serial-number": "C43KMY3",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
+      },
+      "applied-layout": {
+        "uuid": "{96225867-D6CA-4A20-B546-85DAD3F3198A}",
+        "type": "custom",
+        "show-spacing": true,
+        "spacing": 0,
+        "zone-count": 3,
+        "sensitivity-radius": 15
+      }
+    },
+    {
+      "device": {
+        "monitor": "DELD144",
+        "monitor-instance": "4\u002630cd1115\u00260\u0026UID24629",
+        "monitor-number": 1,
+        "serial-number": "C43KMY3",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
+      },
+      "applied-layout": {
+        "uuid": "{96225867-D6CA-4A20-B546-85DAD3F3198A}",
+        "type": "custom",
+        "show-spacing": true,
+        "spacing": 0,
+        "zone-count": 3,
+        "sensitivity-radius": 15
+      }
+    },
+    {
+      "device": {
+        "monitor": "\\\\.\\DISPLAY10",
+        "monitor-instance": "",
+        "monitor-number": 0,
+        "serial-number": "",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
+      },
+      "applied-layout": {
+        "uuid": "{1580F043-AA30-4AEA-AFDB-456E3282E297}",
+        "type": "custom",
+        "show-spacing": true,
+        "spacing": 0,
+        "zone-count": 0,
+        "sensitivity-radius": 0
+      }
+    },
+    {
+      "device": {
+        "monitor": "DELD145",
+        "monitor-instance": "5\u002653a4c91\u00260\u0026UID4609",
+        "monitor-number": 5,
+        "serial-number": "F43KMY3",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
+      },
+      "applied-layout": {
+        "uuid": "{1580F043-AA30-4AEA-AFDB-456E3282E297}",
+        "type": "custom",
+        "show-spacing": true,
+        "spacing": 0,
+        "zone-count": 0,
+        "sensitivity-radius": 0
+      }
+    },
+    {
+      "device": {
+        "monitor": "DELD145",
+        "monitor-instance": "5\u002653a4c91\u00260\u0026UID4610",
+        "monitor-number": 6,
+        "serial-number": "F43KMY3",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
+      },
+      "applied-layout": {
+        "uuid": "{1580F043-AA30-4AEA-AFDB-456E3282E297}",
+        "type": "custom",
+        "show-spacing": true,
+        "spacing": 0,
+        "zone-count": 0,
+        "sensitivity-radius": 0
+      }
+    },
+    {
+      "device": {
+        "monitor": "AUO31A6",
+        "monitor-instance": "4\u002630cd1115\u00260\u0026UID8388688",
+        "monitor-number": 1,
+        "serial-number": "0",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
+      },
+      "applied-layout": {
+        "uuid": "{96225867-D6CA-4A20-B546-85DAD3F3198A}",
+        "type": "custom",
+        "show-spacing": true,
+        "spacing": 0,
+        "zone-count": 3,
+        "sensitivity-radius": 15
+      }
+    },
+    {
+      "device": {
+        "monitor": "DELD145",
+        "monitor-instance": "5\u002653a4c91\u00260\u0026UID4609",
+        "monitor-number": 5,
+        "serial-number": "C43KMY3",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
+      },
+      "applied-layout": {
+        "uuid": "{96225867-D6CA-4A20-B546-85DAD3F3198A}",
+        "type": "custom",
+        "show-spacing": true,
+        "spacing": 0,
+        "zone-count": 3,
+        "sensitivity-radius": 15
+      }
+    },
+    {
+      "device": {
+        "monitor": "DELD145",
+        "monitor-instance": "5\u002653a4c91\u00260\u0026UID4610",
+        "monitor-number": 6,
+        "serial-number": "C43KMY3",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
+      },
+      "applied-layout": {
+        "uuid": "{1580F043-AA30-4AEA-AFDB-456E3282E297}",
+        "type": "custom",
+        "show-spacing": true,
+        "spacing": 0,
+        "zone-count": 3,
+        "sensitivity-radius": 15
+      }
+    },
+    {
+      "device": {
+        "monitor": "ACR0934",
+        "monitor-instance": "5\u002653a4c91\u00260\u0026UID4611",
+        "monitor-number": 7,
+        "serial-number": "TPSAA0018522",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
+      },
+      "applied-layout": {
+        "uuid": "{CC63BB49-C46B-4F3E-A49A-05F196157822}",
+        "type": "custom",
+        "show-spacing": true,
+        "spacing": 0,
+        "zone-count": 3,
+        "sensitivity-radius": 20
+      }
+    },
+    {
+      "device": {
+        "monitor": "DELD145",
+        "monitor-instance": "4\u002630cd1115\u00260\u0026UID49479",
+        "monitor-number": 3,
+        "serial-number": "F43KMY3",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
+      },
+      "applied-layout": {
+        "uuid": "{CC63BB49-C46B-4F3E-A49A-05F196157822}",
+        "type": "custom",
+        "show-spacing": true,
+        "spacing": -5,
+        "zone-count": 3,
+        "sensitivity-radius": 20
+      }
+    },
+    {
+      "device": {
+        "monitor": "ACR0934",
+        "monitor-instance": "4\u002630cd1115\u00260\u0026UID53831",
+        "monitor-number": 4,
+        "serial-number": "TPSAA0018522",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
+      },
+      "applied-layout": {
+        "uuid": "{D71374A7-DCEA-490C-9034-B866DBF46E00}",
+        "type": "custom",
+        "show-spacing": true,
+        "spacing": 0,
+        "zone-count": 3,
+        "sensitivity-radius": 20
+      }
+    },
+    {
+      "device": {
+        "monitor": "DELD144",
+        "monitor-instance": "4\u002630cd1115\u00260\u0026UID45127",
+        "monitor-number": 10,
+        "serial-number": "C43KMY3",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
+      },
+      "applied-layout": {
+        "uuid": "{1580F043-AA30-4AEA-AFDB-456E3282E297}",
+        "type": "custom",
+        "show-spacing": true,
+        "spacing": 0,
+        "zone-count": 0,
+        "sensitivity-radius": 0
+      }
+    },
+    {
+      "device": {
+        "monitor": "Default_Monitor",
+        "monitor-instance": "1\u00268713bca\u00260\u0026UID0",
+        "monitor-number": 9,
+        "serial-number": "",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
+      },
+      "applied-layout": {
+        "uuid": "{1580F043-AA30-4AEA-AFDB-456E3282E297}",
+        "type": "custom",
+        "show-spacing": true,
+        "spacing": 0,
+        "zone-count": 0,
+        "sensitivity-radius": 0
+      }
+    },
+    {
+      "device": {
+        "monitor": "\\\\.\\DISPLAY2",
+        "monitor-instance": "",
+        "monitor-number": 0,
+        "serial-number": "",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
+      },
+      "applied-layout": {
+        "uuid": "{1580F043-AA30-4AEA-AFDB-456E3282E297}",
+        "type": "custom",
+        "show-spacing": true,
+        "spacing": 0,
+        "zone-count": 0,
+        "sensitivity-radius": 0
+      }
+    },
+    {
+      "device": {
+        "monitor": "\\\\.\\DISPLAY3",
+        "monitor-instance": "",
+        "monitor-number": 0,
+        "serial-number": "",
+        "virtual-desktop": "{00000000-0000-0000-0000-000000000000}"
+      },
+      "applied-layout": {
+        "uuid": "{1580F043-AA30-4AEA-AFDB-456E3282E297}",
+        "type": "custom",
+        "show-spacing": true,
+        "spacing": 0,
+        "zone-count": 0,
+        "sensitivity-radius": 0
       }
     }
   ]
