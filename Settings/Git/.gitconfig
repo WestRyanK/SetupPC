@@ -42,7 +42,8 @@
     bd  = branch -d
     bD  = branch -D
     bdr = !pwsh -command Remove-GitRemoteBranch
-    cl = !pwsh -command Git-CloseAndClean
+    bm  = !pwsh -command Rename-GitLocalAndRemoteBranch
+    cl  = !pwsh -command Git-CloseAndClean
     ch  = checkout
     chb = checkout -b
     cfg = config --global -e

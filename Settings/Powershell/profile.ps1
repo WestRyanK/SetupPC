@@ -103,6 +103,23 @@ function Remove-GitRemoteBranch {
     git push -d origin $remoteName
 }
 
+function Rename-GitLocalAndRemoteBranch {
+    param(
+    [Parameter(Mandatory=$true)] [string] $NewBranchName,
+    [string] $OldBranchName
+    )
+
+    if ([string]::IsNullOrWhitespace($OldBranchName)) {
+        $OldBranchName = (git status) | Where-Object { $_ -match "On branch (.+)" } | Foreach-Object { $Matches[1] }
+    }
+
+    git branch -m $OldBranchName $NewBranchName
+    git push -d origin $OldBranchName
+    git branch --unset-upstream $NewBranchName
+    git push origin $NewBranchName
+    git push origin -u $NewBranchName
+}
+
 function Get-GitStatusWorking {
     return (Get-GitStatus).Working
 }
@@ -145,23 +162,6 @@ function Git-CloseAndClean {
     $processes | Wait-Process
     # git clean -X leaves untracked files while -x deletes untracked files. I've burned myself several times by accidentally deleting new untracked files with -x
     git clean -Xfd
-}
-
-function Build-LocalNugetPackages {
-    Start-VsDevShell
-    Push-Location C:/repos/Graphics/
-    Git-CloseAndClean
-    msbuild -t:restore ./Analyzers.sln
-    msbuild ./Analyzers.sln /p:Configuration=Release /p:CI=true
-    Get-ChildItem -Recurse -Include "*.nupkg", "*.snupkg" | Foreach {
-        cp $_ C:/local_nuget
-    }
-}
-
-function Remove-CachedNovaradPackages {
-    Get-ChildItem C:\Users\westryank\.nuget\packages -Filter "novarad*" | Foreach-Object {
-        rm -recurse $_
-    }
 }
 
 function Enter-GraphicsRepo {
