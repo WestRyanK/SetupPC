@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
-  "version": 2,
+  "version": 3,
   "final_space": true,
   "console_title_template": "{{ .Shell }} in {{ .Folder }}",
   "blocks": [
@@ -89,7 +89,8 @@
   "transient_prompt": {
     "foreground": "p:white",
     "background": "transparent",
-    "template": "<p:chip_background,transparent>\ue0b6</><,p:chip_background><b>{{ path .Var.FolderIcon .Segments.Path.Location }} {{ .Folder }}</b></><p:chip_background,transparent>\ue0b4</> "
+    "template": "<p:chip_background,transparent>\ue0b6</><,p:chip_background><b>{{ .Var.FolderIcon }} {{ .Folder }}</b></><p:chip_background,transparent>\ue0b4</>",
+    "filler": "<p:chip_background>—</>"
   },
   "secondary_prompt": {
     "foreground": "p:white",
