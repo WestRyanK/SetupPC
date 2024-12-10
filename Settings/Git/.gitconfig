@@ -15,13 +15,12 @@
 	cmd = \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\vsdiffmerge.exe\" \"$LOCAL\" \"$REMOTE\" //t
 	keepBackup = false
 [merge]
-	tool = vsdiffmerge
+	tool = kdiff3
 [mergetool]
 #	prompt = true
     keepBackup = false
 [mergetool "vsdiffmerge"]
 	cmd = \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\vsdiffmerge.exe\" \"$REMOTE\" \"$LOCAL\" \"$BASE\" \"$MERGED\" //m
-	keepBackup = false
 	trustExitCode = true
 [push]
 	default = upstream
@@ -85,3 +84,7 @@
 	defaultBranch = main
 #[core]
     #pager = sed 's/ /·/g' | sed 's/\t/[90m→[0m       /g' | less -R
+[safe]
+	directory = D:/source/design-system
+[log]
+	date = iso-local
