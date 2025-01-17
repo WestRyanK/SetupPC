@@ -1,8 +1,3 @@
-# https://github.com/dfinke/PowerShellAI
-# To use ChatGPT in PowerShell, move the following line outside
-# the SetupPC region. Then fill in the API key from 1Password:
-# $env:OpenAIKey = 'your-api-key-here'
-
 function Test-Interactive {
     $commandArgs = [Environment]::GetCommandLineArgs()
     $hasNonInteractiveArgs = $commandArgs | Where-Object { ($_ -ilike "-NonI*") }
@@ -132,20 +127,28 @@ Set-Alias ggsw Get-GitStatusWorking
 Set-Alias ggsi Get-GitStatusIndex
 
 function Open-GitStatus {
+    $files = (Get-GitStatusWorking) + (Get-GitStatusIndex)
+    $files | Foreach-Object {
+        Open-DevEnv $_
+    }
+}
+Set-Alias ogs Open-GitStatus
+
+function Open-DevEnv {
+    param(
+        [string] $Path
+        )
+
     $VsPath = Get-VsPath
     if ($null -eq $VsPath) {
         Write-Error "Visual Studio is not installed"
         return
     }
     $DevEnvPath = [System.IO.Path]::Join($VsPath, "Common7", "IDE", "devenv.exe")
-    
-    $files = (Get-GitStatusWorking) + (Get-GitStatusIndex)
-    $files | Foreach-Object {
-        Start $DevEnvPath -ArgumentList "/edit $_"
-        Start-Sleep 1
-    }
+
+    & $DevEnvPath /edit $Path
+    Start-Sleep -Seconds 0.5
 }
-Set-Alias ogs Open-GitStatus
 
 function Enter-NewDirectory {
     param(
@@ -213,4 +216,50 @@ function Invoke-GitPullRequest {
     }
 
     Start-Process $PullRequestUrl
+}
+
+function Edit-Profile {
+    vim $PROFILE.CurrentUserAllHosts
+}
+
+function Format-GitCommitMessage {
+    param (
+        [Parameter(Mandatory=$true, ValueFromPipeline=$true)] [string] $CommitMessage
+    )
+    begin {
+        $AllCommitMessageLines = @()
+    }
+    process {
+        $AllCommitMessageLines += $CommitMessage
+    }
+    end {
+        if ($null -eq $env:OpenAi_Api_Key) {
+            Write-Error "You must set the environment variable `"env:OpenAi_Api_Key`" before using this command."
+        }
+
+        $url = "https://api.openai.com/v1/chat/completions"
+
+        $requestBody = @{
+            model = "gpt-4o-mini"
+            messages = @(
+                @{
+                    role = "system"
+                    content = "You are an AI that rewrites Git commit messages to be clear, and professional. Respond with a commit message title and body and nothing else. Do not label the title or body. Prefer paragraphs, but if you need to make a list use a hyphen character for bullet points."
+                },
+                @{
+                    role = "user"
+                    content = "Rewrite this Git commit message: $AllCommitMessageLines"
+                }
+            )
+            temperature = 0.7
+        } | ConvertTo-Json -Depth 10
+
+        $headers = @{
+            "Content-Type"  = "application/json"
+            "Authorization" = "Bearer ${env:OpenAi_Api_Key}"
+        }
+
+        $response = Invoke-RestMethod -Uri $url -Method Post -Headers $headers -Body $requestBody
+        return $response.choices[0].message.content
+    }
 }

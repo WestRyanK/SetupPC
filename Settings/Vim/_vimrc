@@ -1,5 +1,18 @@
 set nocompatible 
 
+" Use Powershell as vim command shell
+set shell=pwsh
+set shellxquote=
+let &shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command $PSStyle.OutputRendering=[System.Management.Automation.OutputRendering]::PlainText;'
+let &shellquote   = ''
+let &shellpipe    = '| Out-File -Encoding UTF8 %s'
+let &shellredir   = '| Out-File -Encoding UTF8 %s'
+
+" Rewrite selected text as improved git commit message using chatGPT
+vnoremap gc yGo<CR><CR><CR><Esc>pV']:!Format-GitCommitMessage<CR>VGgq
+
+set autoindent
+
 " Default to system clipboard
 set clipboard=unnamed
 
