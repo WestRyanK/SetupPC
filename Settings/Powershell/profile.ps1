@@ -218,6 +218,17 @@ function Invoke-GitPullRequest {
     Start-Process $PullRequestUrl
 }
 
+function Invoke-GitPullMain {
+    $CurrentBranch = git branch --show-current
+    if ($CurrentBranch -eq "main") {
+        git pull
+    }
+    else {
+        git fetch
+        git branch -f main origin/main
+    }
+}
+
 function Edit-Profile {
     vim $PROFILE.CurrentUserAllHosts
 }
@@ -240,7 +251,7 @@ function Format-GitCommitMessage {
         $url = "https://api.openai.com/v1/chat/completions"
 
         $requestBody = @{
-            model = "gpt-4o-mini"
+            model = "gpt-4o"
             messages = @(
                 @{
                     role = "system"

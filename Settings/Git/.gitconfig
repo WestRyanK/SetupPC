@@ -78,6 +78,7 @@
     rba = rebase --abort
     s   = status
     sh  = stash
+    up  = !pwsh -command Invoke-GitPullMain
 
     show-whitespace = !git -c core.pager='sed s/\\ /·/g | sed s/\\\t/￫\\ \\ \\ /g | less -R' $@ && :
 [init]
