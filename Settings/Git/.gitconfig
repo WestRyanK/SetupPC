@@ -5,6 +5,9 @@
 	tool = vsdiffmerge
     colormoved=zebra
     context=10
+	algorithm = histogram
+	renames = true
+	mnemonicPrefix = true
 [difftool]
 #    prompt = true
 [difftool "vsdiffmerge"]
@@ -20,9 +23,11 @@
 	trustExitCode = true
 [push]
 	default = upstream
-#	autoSetupRemote = true
+	autoSetupRemote = true
 [fetch]
     prune = true
+    pruneTags = true
+    all = true
 [pull]
     rebase = true
 [core]
@@ -83,3 +88,10 @@
 	directory = D:/source/design-system
 [log]
 	date = iso-local
+[column]
+	ui = auto
+[tag]
+	sort = version:refname
+[rebase]
+	updateRefs = true
+	autosquash = true

@@ -7,7 +7,7 @@ function Test-Interactive {
 $interactive = Test-Interactive
 
 # Start Interactive
-if ($interactive) { 
+if ($interactive) {
     Set-Alias g git
 
     Import-Module posh-git
@@ -15,11 +15,11 @@ if ($interactive) {
     Import-Module SettingsRepo -DisableNameChecking
     Set-Alias -Name vim -Value nvim
     Set-Alias -Name vi -Value nvim
-    
+
     Set-PSReadLineOption -BellStyle visual
-    
+
     oh-my-posh init pwsh --config "$home/.oh_my_posh.omp.json" | iex
-} 
+}
 # End Interactive
 
 
