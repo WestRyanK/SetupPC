@@ -3,7 +3,7 @@ $SettingsRepoRoot = "C:/repos/setup/Settings"
 
 Function SettingsRepo-Restore {
     param(
-        [ValidateSet("All", "AutoHotKey", "Git", "OhMyPosh", "PowerToys", "Powershell", "Terminal", "Vim")] 
+        [ValidateSet("All", "AutoHotKey", "Git", "OhMyPosh", "PowerToys", "Powershell", "Terminal", "Vim")]
             [String] $Name
     )
 
@@ -35,7 +35,7 @@ Function SettingsRepo-Add {
 
     $Names | Foreach-Object {
         Write-Host "Adding $_ to repo..."
-        
+
         $SettingsRepoPath = "$SettingsRepoRoot/$_"
         if (Test-Path $SettingsRepoPath) {
             Remove-Item "$SettingsRepoPath" -Recurse
@@ -106,4 +106,9 @@ Function SettingsRepo-Commit {
         git -C "$SettingsRepoRoot" commit -m "$CommitMessage"
         git -C "$SettingsRepoRoot" push
     }
+}
+
+
+Function SettingsRepo-Open {
+    Start-Process "code" -ArgumentList "$SettingsRepoRoot"
 }
