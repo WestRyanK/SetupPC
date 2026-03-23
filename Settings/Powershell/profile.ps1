@@ -160,6 +160,18 @@ function Git-CloseAndClean {
     git clean -Xfd
 }
 
+function Enter-DesignSystemRepo {
+    param(
+        [ArgumentCompleter({
+            $basePath = "D:/source/design-system"
+            Get-ChildItem -Path $basePath -Directory | Select-Object -ExpandProperty Name
+        })]
+        [string] $Subdirectory = "main"
+    )
+    Set-Location "D:/source/design-system/$Subdirectory"
+}
+
+Set-Alias cdds Enter-DesignSystemRepo
 
 function Start-Chrome {
     $Address = ($args -Join " ")
@@ -216,6 +228,23 @@ function Invoke-GitPullMain {
         git fetch
         git branch -f main origin/main
     }
+}
+
+function Invoke-GitWorktreeAdd {
+    param(
+        [string] $BranchName
+    )
+
+    git worktree add ../$BranchName -b $BranchName main
+}
+
+function Invoke-GitWorktreeDelete {
+    param(
+        [string] $BranchName
+    )
+
+    git worktree remove ../$BranchName
+    git branch -d $BranchName
 }
 
 function Edit-Profile {

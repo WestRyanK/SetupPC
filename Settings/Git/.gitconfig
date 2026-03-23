@@ -78,6 +78,9 @@
     s   = status
     sh  = stash
     up  = !pwsh -command Invoke-GitPullMain
+    wta = !pwsh -command Invoke-GitWorktreeAdd
+    wtd = !pwsh -command Invoke-GitWorktreeDelete
+    wtl = worktree list
 
     show-whitespace = !git -c core.pager='sed s/\\ /·/g | sed s/\\\t/￫\\ \\ \\ /g | less -R' $@ && :
 [init]
