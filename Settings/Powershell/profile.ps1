@@ -160,10 +160,6 @@ function Git-CloseAndClean {
     git clean -Xfd
 }
 
-function Enter-GraphicsRepo {
-    Set-Location C:/repos/Graphics
-}
-Set-Alias repog Enter-GraphicsRepo
 
 function Start-Chrome {
     $Address = ($args -Join " ")

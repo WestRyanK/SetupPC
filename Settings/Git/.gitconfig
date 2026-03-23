@@ -1,10 +1,6 @@
-[credential "http://tfs.novarad.net:8080"]
-	provider = generic
 [user]
 	name = Ryan West
 	email = west.ryan.k@gmail.com
-[credential "https://tfs.novarad.net"]
-	provider = generic
 [diff]
 	tool = vsdiffmerge
     colormoved=zebra
@@ -66,8 +62,6 @@
     ps  = push
     psf = push -f
     pl  = pull
-    # ps  = !pwsh -command Invoke-GitPushDev
-    # psf = !pwsh -command Invoke-GitPushDev -f
     rep = remote prune origin
     rs  = reset
     rsh = reset --hard
